@@ -1,0 +1,22 @@
+<!doctype html>
+<html>
+    <head>
+        <title>{{title}}</title>
+        <link type="text/css" rel="stylesheet" href="/static/template.css" />
+    </head>
+    <body>
+        <div id="banner">
+            <ul class="siteNavigation">
+                    <li id="categoriesTab"><a href="/">Categories</a></li>
+                    <li id="artistsTab"><a href="/artists">Artists</a></li>
+                    <li id="aboutTab"><a href="/about">About Us</a></li>
+            </ul>
+        </div>
+
+    <div class="contentBox">
+		<%= yield %>
+	</div>
+
+	<div id="footer">Web Development by Dustin Youngberg</div>
+    </body>
+</html>

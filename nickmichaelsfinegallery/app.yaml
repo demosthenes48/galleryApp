@@ -10,7 +10,7 @@ handlers:
   upload: favicon\.ico
 
 - url: .*
-  script: main.app
+  script: routes.home.app
 
 - url: /static/(.*\.css)
   mime_type: text/css
