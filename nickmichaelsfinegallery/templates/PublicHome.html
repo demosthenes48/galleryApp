@@ -1,22 +1,38 @@
 <!doctype html>
 <html>
     <head>
+        {% block head %}
         <title>{{title}}</title>
-        <link type="text/css" rel="stylesheet" href="/static/template.css" />
+        <link rel="stylesheet" href="/static/css/base.css" />
+        {% endblock %}
     </head>
     <body>
-        <div id="banner">
-            <ul class="siteNavigation">
-                    <li id="categoriesTab"><a href="/">Categories</a></li>
+        <center>
+            <img src="/static/website_banner.jpg" alt="Nick Michael's Website Banner" border="0">
+        </center>
+        <div class="navigation">
+            <ul class="mainNavigation">
+                    <li id="homeTab"><a href="/">Home</a></li>
                     <li id="artistsTab"><a href="/artists">Artists</a></li>
                     <li id="aboutTab"><a href="/about">About Us</a></li>
+
+                    <li id="manageArtTab"><a href="/manageArt">Manage Art</a></li>
+                    <li id="manageArtCategoriesTab"><a href="/manageArtCategories">Manage Art Categories</a></li>
+                    <li id="manageArtistsTab"><a href="/manageArtists">Manage Artists</a></li>
+                    <li id="bulkUploadTab"><a href="/bulkUpload">Bulk Upload</a></li>
             </ul>
         </div>
 
     <div class="contentBox">
-		<%= yield %>
+        {% block content %}
+            This is where the different content for each page goes (from child template)
+        {% endblock %}
 	</div>
 
-	<div id="footer">Web Development by Dustin Youngberg</div>
+	<div id="footer">
+        {% block footer %}
+        Web Design by Dustin Youngberg   &copy; Copyright 2014 by Avsolen, LLC.
+        {% endblock %}
+	</div>
     </body>
 </html>
