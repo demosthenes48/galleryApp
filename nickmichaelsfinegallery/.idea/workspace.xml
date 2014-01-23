@@ -26,16 +26,16 @@
       <file leaf-file-name="PublicHome.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/PublicHome.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="5" column="44" selection-start="136" selection-end="136" vertical-scroll-proportion="-3.2692308" vertical-offset="0" max-vertical-offset="731">
+            <state line="23" column="17" selection-start="1100" selection-end="1100" vertical-scroll-proportion="-15.038462" vertical-offset="0" max-vertical-offset="748">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PublicHomeController.py" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="PublicHomeController.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/controllers/PublicHomeController.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="13" column="0" selection-start="426" selection-end="426" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="323">
+            <state line="22" column="32" selection-start="577" selection-end="577" vertical-scroll-proportion="0.63822526" vertical-offset="0" max-vertical-offset="629">
               <folding>
                 <element signature="e#0#14#0" expanded="true" />
               </folding>
@@ -43,19 +43,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="app.yaml" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="app.yaml" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app.yaml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="13" column="0" selection-start="193" selection-end="193" vertical-scroll-proportion="0.3771331" vertical-offset="0" max-vertical-offset="586">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="base.css" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/stylesheets/base.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="14" column="19" selection-start="326" selection-end="326" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2074">
+            <state line="29" column="0" selection-start="586" selection-end="586" vertical-scroll-proportion="0.0" vertical-offset="43" max-vertical-offset="833">
               <folding />
             </state>
           </provider>
@@ -64,7 +55,7 @@
       <file leaf-file-name="home.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/routes/home.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="7" column="19" selection-start="136" selection-end="136" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="255">
+            <state line="9" column="15" selection-start="154" selection-end="154" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="255">
               <folding>
                 <element signature="e#0#14#0" expanded="true" />
               </folding>
@@ -91,8 +82,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/models/artiece.py" />
-        <option value="$PROJECT_DIR$/models/image.py" />
         <option value="$PROJECT_DIR$/models/photo.py" />
         <option value="$PROJECT_DIR$/models/artist.py" />
         <option value="$PROJECT_DIR$/models/category.py" />
@@ -105,8 +94,10 @@
         <option value="$PROJECT_DIR$/models/artpiece.py" />
         <option value="$PROJECT_DIR$/static/css/template.css" />
         <option value="$PROJECT_DIR$/static/css/base.css" />
-        <option value="$PROJECT_DIR$/templates/PublicHome.html" />
         <option value="$PROJECT_DIR$/app.yaml" />
+        <option value="$PROJECT_DIR$/templates/PublicHome.html" />
+        <option value="$PROJECT_DIR$/controllers/PublicHomeController.py" />
+        <option value="$PROJECT_DIR$/routes/home.py" />
       </list>
     </option>
   </component>
@@ -172,20 +163,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="templates" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="nickmichaelsfinegallery" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="nickmichaelsfinegallery" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="stylesheets" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -559,42 +536,35 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/home.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="19" selection-start="136" selection-end="136" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="255">
-          <folding>
-            <element signature="e#0#14#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/controllers/PublicHomeController.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="0" selection-start="426" selection-end="426" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="323">
-          <folding>
-            <element signature="e#0#14#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/PublicHome.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="44" selection-start="136" selection-end="136" vertical-scroll-proportion="-3.2692308" vertical-offset="0" max-vertical-offset="731">
+        <state line="23" column="17" selection-start="1100" selection-end="1100" vertical-scroll-proportion="-15.038462" vertical-offset="0" max-vertical-offset="748">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/stylesheets/base.css">
+    <entry file="file://$PROJECT_DIR$/routes/home.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="19" selection-start="326" selection-end="326" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2074">
-          <folding />
+        <state line="9" column="15" selection-start="154" selection-end="154" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="255">
+          <folding>
+            <element signature="e#0#14#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app.yaml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="0" selection-start="193" selection-end="193" vertical-scroll-proportion="0.3771331" vertical-offset="0" max-vertical-offset="586">
+        <state line="29" column="0" selection-start="586" selection-end="586" vertical-scroll-proportion="0.0" vertical-offset="43" max-vertical-offset="833">
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controllers/PublicHomeController.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="22" column="32" selection-start="577" selection-end="577" vertical-scroll-proportion="0.63822526" vertical-offset="0" max-vertical-offset="629">
+          <folding>
+            <element signature="e#0#14#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
