@@ -24,18 +24,18 @@ handlers:
   static_files: static/\1
   upload: static/(.*\.(bmp|gif|ico|jpeg|jpg|png))
 
+
+# Page Handlers
+
 - url: /admin/.*
   script: routes.admin.app
   login: admin
 
-- url: /.*
-  script: routes.home.app
-
-
-
-# Page Handlers
 - url: /student/.*
   script: routes.studentRoutes.app
+
+- url: /.*
+  script: routes.home.app
 
 libraries:
 - name: webapp2

@@ -1,19 +1,94 @@
+html, body{
+    height:100%;
+}
+
+body
+{
+    margin: 0;
+    padding: 0;
+    text-align: left;
+    font-family:"Adobe Garamond Pro Bold", Georgia, "Times New Roman", Times, serif;
+    font-size: 75%;
+    color: #061C37;
+    background: rgba(140,143,184,1);
+    background: -moz-linear-gradient(top, rgba(140,143,184,1) 0%, rgba(45,49,84,1) 66%, rgba(45,49,84,1) 80%, rgba(45,49,84,1) 100%);
+    background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(140,143,184,1)), color-stop(66%, rgba(45,49,84,1)), color-stop(80%, rgba(45,49,84,1)), color-stop(100%, rgba(45,49,84,1)));
+    background: -webkit-linear-gradient(top, rgba(140,143,184,1) 0%, rgba(45,49,84,1) 66%, rgba(45,49,84,1) 80%, rgba(45,49,84,1) 100%);
+    background: -o-linear-gradient(top, rgba(140,143,184,1) 0%, rgba(45,49,84,1) 66%, rgba(45,49,84,1) 80%, rgba(45,49,84,1) 100%);
+    background: -ms-linear-gradient(top, rgba(140,143,184,1) 0%, rgba(45,49,84,1) 66%, rgba(45,49,84,1) 80%, rgba(45,49,84,1) 100%);
+    background: linear-gradient(to bottom, rgba(140,143,184,1) 0%, rgba(45,49,84,1) 66%, rgba(45,49,84,1) 80%, rgba(45,49,84,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#8c8fb8', endColorstr='#2d3154', GradientType=0 );
+ }
+
 *
 {
-  margin: 0 auto 0 auto;
- text-align:left;}
+    margin: 0 auto 0 auto;
+    text-align:left;
+}
+
+#page
+{
+    display: block;
+    height:100%;
+    position: relative;
+    overflow: hidden;
+    max-width: 800px;
+}
+
+.contentBox
+{
+    width:100%;
+    height:100%;
+    background-color:#F2E1D7;
+}
+
+.innerBox
+{
+    position:relative;
+    margin:10px 10px 10px 10px;
+    width:100%;
+    height:100%;
+}
 
 /************************************************************************************
-    Navigation
+    Banner & Navigation
  ************************************************************************************/
+
+.banner
+{
+    max-width: 800px;
+
+    background: #F2E1D7;
+}
+
+#bannerImage
+{
+    margin:6px 10px 0px 10px;
+    width:100%;
+    z-index: 0;
+}
+
+.innerNavigation
+{
+    display: block;
+    height:auto;
+    position:relative;
+    overflow:hidden;
+    width:auto;
+    margin:00px 10px 00px 10px;
+    border-style:solid;
+    border-width:1px;
+}
 
 .navigation
 {
-  display: block;
-  height:auto;
-  position: relative;
-  overflow: hidden;
-  width: 100%;
+    display: block;
+    height:auto;
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    background: #F2E1D7;
+    margin-top:-5px;
 }
 
 ul.mainNavigation{
@@ -21,19 +96,20 @@ ul.mainNavigation{
 	margin:0;
 	padding:0;
 	overflow:hidden;
+	background: #6B100F;
 }
 
 ul.mainNavigation li{
 	text-align:center;
 	position:relative;
 	margin-top:5px;
-	font-size:16px;
+	font-weight:bold;
 	margin-left:-10px;
 	width:121px;
 	height: 35px;
 	line-height: 35px;
 	float:left;
-	color:#CEEAEE;
+	color:#FFFFFF;
 	font-family:"Adobe Garamond Pro Bold", Georgia, "Times New Roman", Times, serif;
 }
 
@@ -44,13 +120,12 @@ ul.mainNavigation a:link,a:visited{
 	color:#FFFFFF;
 	text-align:center;
 	text-decoration:none;
-	color:#CDE2FC;
 }
 
 ul.mainNavigation a:hover, ul.siteNavigation a:active{
 	text-align:center;
 	border-bottom:none;
-	color:#0C61C9;
+	color:#FFFFFF;
 	display: block;
 	width:121px;
 	height: 35px;
@@ -69,49 +144,48 @@ ul.mainNavigation li.navTabActive{
 	background-image:url(tab.png);
 }
 
-#headerTitle
-{
-position:relative;
-top:30px;
-left:40px;
-font-size:25px;
-color:#FFFFFF;
-font-family:"Adobe Garamond Pro Bold", Georgia, "Times New Roman", Times, serif;
-}
+/************************************************************************************
+    Header & Footer
+ ************************************************************************************/
 
 #headerSubtext
 {
-position:relative;
-top:30px;
-left:50px;
-font-size:14px;
-color:#A9C8FA;
-font-family:"Adobe Garamond Pro Bold", Georgia, "Times New Roman", Times, serif;
+    position:relative;
+    top:30px;
+    left:50px;
+    font-size:14px;
+    color:#A9C8FA;
+    font-family:"Adobe Garamond Pro Bold", Georgia, "Times New Roman", Times, serif;
 }
 
-.contentBox
+#headerTitle
 {
-width:100%;
-height:auto;
-background-color:#FFFFFF;
-margin-top:10px;
+    position:relative;
+    top:30px;
+    left:40px;
+    font-size:25px;
+    color:#FFFFFF;
+    font-family:"Adobe Garamond Pro Bold", Georgia, "Times New Roman", Times, serif;
 }
 
 #footer
 {
-width: 100%;
-height:16px;
-background: #2c66a0;
-text-align:center;
-font-size:9px;
-font-family:Arial, Helvetica, sans-serif;
-color:#303030;
-padding-top:5px;
+    position:absolute;
+    bottom:0;
+    width: 100%;
+    max-width: 800px;
+    height:16px;
+    background: #F2E1D7;
+    text-align:center;
+    font-size:9px;
+    font-family:Arial, Helvetica, sans-serif;
+    color:#000000;
+    padding-top:5px;
 }
 
 #footer a
 {
-text-decoration:none;
-font-size:9px;
-color:#386172;
+    text-decoration:none;
+    font-size:9px;
+    color:#386172;
 }

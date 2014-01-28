@@ -1,6 +1,6 @@
 import webapp2
 
-from controllers.PublicHomeController import *
+from controllers.BaseController import *
 
 app = webapp2.WSGIApplication([
 
