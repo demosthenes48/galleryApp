@@ -1,0 +1,58 @@
+{% extends "/templates/base.html" %}
+{% block title %}Nick Michael's Fine Galler: Upload Photos{% endblock %}
+{% block head %}
+    <title>{{title}}</title>
+    <link rel="stylesheet" href="/static/css/base.css" />
+
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+    <script type="text/javascript" src="/static/plupload/gears_init.js"></script>
+    <script type="text/javascript" src="/static/plupload/plupload.full.min.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            var uploader = new plupload.Uploader({
+            runtimes: 'gears,html5,flash,html4',
+            browse_button: 'pickfiles',
+            container: 'container',
+            url: '{{form_url}}',
+                                use_query_string: false,
+                                multipart: true,
+                                flash_swf_url: '/static/plupload/plupload.flash.swf',
+        });
+
+        uploader.bind('FilesAdded', function(up, files) {
+            $.each(files, function(i, file) {
+            $('#filelist').append(
+                '<div id="' + file.id + '">' +
+                'File: ' + file.name + ' (' + plupload.formatSize(file.size) + ') <b></b>' +
+                '</div>'
+            );
+            });
+        });
+        uploader.bind('UploadProgress', function(up, file) {
+            $('#' + file.id + ' b').html(file.percent + '%');
+        });
+        uploader.bind('FileUploaded', function(up, file, response) {
+                                    window.location = response.response;
+        });
+        uploader.bind('Error', function(up, err) {
+                              alert("Upload error: " + err.message);
+        });
+        uploader.bind('QueueChanged', function(up) {
+            uploader.start();
+        });
+
+        uploader.init();
+        });
+    </script>
+{% endblock %}
+
+{% block content %}
+    <p style="float: right"><a href="{{logout_url}}">Log Out</a></p>
+    <h1>Upload a file to the gallery data store</h1>
+        <form>
+                <div id="container">
+                        <div id="filelist"></div>
+                        <a id="pickfiles" href="#">[Upload files]</a>
+                </div>
+        </form>
+{% endblock %}

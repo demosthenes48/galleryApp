@@ -40,9 +40,10 @@ body
     width:100%;
     height:100%;
     background-color:#F2E1D7;
+    overflow:hidden;
 }
 
-.innerBox
+.innerContentBox
 {
     position:relative;
     margin:10px 10px 10px 10px;
@@ -56,15 +57,16 @@ body
 
 .banner
 {
-    max-width: 800px;
-
+    width:100%;
+    overflow;hidden;
     background: #F2E1D7;
 }
 
 #bannerImage
 {
-    margin:6px 10px 0px 10px;
+    margin:8px 10px 0px 10px;
     width:100%;
+    max-width:780px;
     z-index: 0;
 }
 
@@ -89,6 +91,12 @@ body
     width: 100%;
     background: #F2E1D7;
     margin-top:-5px;
+}
+
+#searchbar form
+{
+    display: inline;
+    float: left;
 }
 
 ul.mainNavigation{

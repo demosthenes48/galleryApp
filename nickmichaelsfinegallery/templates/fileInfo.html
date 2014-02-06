@@ -1,0 +1,19 @@
+{% extends "/templates/base.html" %}
+{% block title %}Nick Michael's Fine Galler: Upload Photos{% endblock %}
+{% block head %}
+    <title>{{title}}</title>
+    <link rel="stylesheet" href="/static/css/base.css" />
+{% endblock %}
+
+{% block content %}
+    <p style="float: right"><a href="{{logout_url}}">Log Out</a></p>
+    <h1>File information</h1>
+    <table>
+        <tr><th>Filename</th><td>{{file_info.filename}}</td></tr>
+        <tr><th>Size</th><td>{{file_info.size}} bytes</td></tr>
+        <tr><th>Uploaded</th><td>{{file_info.creation}}</td></tr>
+        <tr><th>Content Type</th><td>{{file_info.content_type}}</td></tr>
+    </table>
+
+    <p><a href="/file/{{file_info.key()}}/download">Download this file</a></p>
+{% endblock %}

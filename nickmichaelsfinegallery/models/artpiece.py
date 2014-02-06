@@ -4,7 +4,7 @@ from dimension import Dimension
 from category import Category
 from color import Color
 from medium import Medium
-from picture import Picture
+from file import File
 from weight import Weight
 
 class ArtPiece (ndb.Model):
@@ -21,7 +21,7 @@ class ArtPiece (ndb.Model):
     masterArtFlag = ndb.BooleanProperty
     medium = ndb.KeyProperty(kind=Medium, repeated=True)
     name = ndb.StringProperty(indexed=True)
-    picture = ndb.KeyProperty(kind=Picture)
+    picture = ndb.KeyProperty(kind=File)
     price = ndb.FloatProperty
     weight = ndb.KeyProperty(kind=Weight)
     width = ndb.KeyProperty(kind=Dimension)

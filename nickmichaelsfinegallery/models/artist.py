@@ -1,5 +1,5 @@
 from google.appengine.ext import ndb
-from picture import Picture
+from file import File
 from video import Video
 
 class Artist (ndb.Model):
@@ -8,5 +8,5 @@ class Artist (ndb.Model):
     biography = ndb.TextProperty
     firstName = ndb.StringProperty(indexed=True)
     lastName = ndb.StringProperty(indexed=True)
-    picture = ndb.KeyProperty(kind=Picture)
+    picture = ndb.KeyProperty(kind=File)
     video = ndb.KeyProperty(kind=Video)
