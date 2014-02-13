@@ -56,16 +56,25 @@ class FileUploadFormHandler(BaseHandler):
 
 class FileUploadHandler(blobstore_handlers.BlobstoreUploadHandler):
     def post(self):
-        blob_info = self.get_uploads()[0]
-        if not users.get_current_user():
-            blob_info.delete()
-            self.redirect(users.create_login_url("/"))
-            return
+        for blob_info in self.get_uploads():
+            if not users.get_current_user():
+                blob_info.delete()
+                self.redirect(users.create_login_url("/"))
+                return
 
-        file = File(blob=blob_info.key(), file_name=blob_info.filename, uploaded_by=users.get_current_user())
-        file.put()
+            file = File(blob=blob_info.key(), file_name=blob_info.filename, uploaded_by=users.get_current_user())
+            file.put()
 
-        self.redirect("/file/%s/success" % blob_info.key())
+            import webbrowser
+            new = 2 # open in a new tab, if possible
+
+            # open a public URL, in this case, the webbrowser docs
+            url = "http://localhost:8080/file/%s/success" % blob_info.key()
+            webbrowser.open(url,new=new)
+
+        logging.error("Finished with method")
+
+            #self.open_new_tab("/file/%s/success" % blob_info.key())
 
 
 class AjaxSuccessHandler(BaseHandler):
@@ -95,3 +104,10 @@ class FileDownloadHandler(blobstore_handlers.BlobstoreDownloadHandler):
       self.error(404)
       return
     self.send_blob(file_info, save_as=True)
+
+
+class GenerateUploadUrlHandler(BaseHandler):
+  @util.login_required
+  def get(self):
+    self.response.headers['Content-Type'] = 'text/plain'
+    self.response.out.write(blobstore.create_upload_url('/file/upload'))
