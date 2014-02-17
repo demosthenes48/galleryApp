@@ -43,7 +43,7 @@ class MainPage(BaseHandler):
         self.render_template("/templates/base.html", templateVars)
 
 
-#Photo Upload and Viewing Handlers
+#Photo Upload Handlers
 
 class FileUploadFormHandler(BaseHandler):
   @util.login_required
@@ -65,22 +65,13 @@ class FileUploadHandler(blobstore_handlers.BlobstoreUploadHandler):
             file = File(blob=blob_info.key(), file_name=blob_info.filename, uploaded_by=users.get_current_user())
             file.put()
 
-            import webbrowser
-            new = 2 # open in a new tab, if possible
-
-            # open a public URL, in this case, the webbrowser docs
-            url = "http://localhost:8080/file/%s/success" % blob_info.key()
-            webbrowser.open(url,new=new)
-
-        logging.error("Finished with method")
-
-            #self.open_new_tab("/file/%s/success" % blob_info.key())
+            self.redirect("/file/%s/success" % blob_info.key())
 
 
 class AjaxSuccessHandler(BaseHandler):
     def get(self, file_id):
         self.response.headers['Content-Type'] = 'text/plain'
-        self.response.out.write('%s/file/%s' % (self.request.host_url, file_id))
+        self.response.out.write('%s/%s' % (self.request.host_url, file_id))
 
 
 class FileInfoHandler(BaseHandler):

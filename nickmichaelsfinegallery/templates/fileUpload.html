@@ -23,7 +23,7 @@
 
 {% block content %}
 
-    <form id="form" method="post" action="../dump.php">
+    <form id="form" method="post" action="/file/upload">
         <div id="uploader">
             <p>Your browser doesn't have Flash, Silverlight or HTML5 support.</p>
         </div>
@@ -82,8 +82,31 @@
             flash_swf_url : '../../js/Moxie.swf',
 
             // Silverlight settings
-            silverlight_xap_url : '../../js/Moxie.xap'
+            silverlight_xap_url : '../../js/Moxie.xap',
+
+            // PreInit events, bound before any internal events
+            preinit : {
+                UploadFile: function(up, file) {
+                    $.ajax({
+                        url: '/file/generate_upload_url',
+                        async: false,
+                        success: function(data) {
+                          up.settings.url = data;
+                        },
+                    });
+                }
+            },
+
+            // Post init events, bound after the internal events
+            init : {
+
+                FileUploaded: function(up, file, info) {
+                    // Called when a file has finished uploading
+                    log('[FileUploaded] File:', file, "Info:", info);
+                }
+            }
         });
+
 
 
         // Handle the case when form was submitted before uploading has finished
