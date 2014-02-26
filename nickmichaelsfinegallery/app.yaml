@@ -5,6 +5,9 @@ api_version: 1
 threadsafe: yes
 
 handlers:
+- url: /bootstrap
+  static_dir: bootstrap
+
 - url: /favicon\.ico
   static_files: favicon.ico
   upload: favicon\.ico
@@ -27,18 +30,17 @@ handlers:
 
 # Page Handlers
 
-- url: /admin/.*
+- url: /admin.*
   script: routes.admin.app
   login: admin
 
-- url: /student/.*
-  script: routes.studentRoutes.app
-
 - url: /.*
-  script: routes.home.app
+  script: routes.public.app
 
 libraries:
 - name: webapp2
   version: latest
 - name: jinja2
+  version: latest
+- name: PIL
   version: latest

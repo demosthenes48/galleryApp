@@ -10,7 +10,7 @@ JINJA_ENVIRONMENT = jinja2.Environment(
 class MainPage(webapp2.RequestHandler):
 
     def get(self):
-        template = JINJA_ENVIRONMENT.get_template('/templates/PublicHome.html')
+        template = JINJA_ENVIRONMENT.get_template('/templates/publicHome.html')
 
 
         loginTitle = ""
