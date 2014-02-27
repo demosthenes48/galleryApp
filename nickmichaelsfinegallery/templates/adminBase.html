@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+    <head>
+        <title>{{title}}</title>
+        <link rel="stylesheet" href="/static/bootstrap/css/bootstrap.css">
+        <link rel="stylesheet" href="/static/bootstrap/css/bootstrap-responsive.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+        <link type="text/javascript" src="/static/bootstrap/js/bootstrap.js">
+        {% block scriptsAndStylesheets %}
+        {% endblock %}
+    </head>
+    <body>
+        <div class="container">
+            <h1>Nick Michael's Fine Gallery (Admin)</h1>
+            <div class="navbar">
+                    <div class="navbar-inner">
+                        <div class="container">
+                            <ul class="nav">
+                                <li class="active tab" id="homeTab"><a href="/admin">Home</a></li>
+                                <li class="tab" id="photosTab"><a href="/admin/photos">Photos</a></li>
+                                <li class="tab" id="artistsTab"><a href="#">Artists</a></li>
+                                <li class="tab" id="categoriesTab"><a href="#">Categories</a></li>
+                                <li class="tab" id="artTab"><a href="#">Art</a></li>
+                            </ul>
+                        </div>
+                    </div>
+            </div>
+
+            {% block content %}
+                This is where the different text for each page goes
+            {% endblock %}
+
+            <div id="footer" style="text-align:center;">
+                {% block footerText %}
+                    Development by Dustin Youngberg  &copy;Copyright 2014 by Avsolen, LLC.
+                {% endblock %}
+            </div>
+        </div>
+
+        <script>
+
+            $(document).ready(function() {
+
+            var docHeight = $(window).height();
+            var footerHeight = $('#footer').height();
+            var footerTop = $('#footer').position().top + footerHeight;
+
+            if (footerTop < docHeight) {
+                $('#footer').css('margin-top', 0+ (docHeight - footerTop) + 'px');
+            }
+          });
+         </script>
+    </body>
+</html>

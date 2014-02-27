@@ -29,26 +29,9 @@ class BaseHandler(webapp2.RequestHandler):
 class MainPage(BaseHandler):
 
     def get(self):
-        loginTitle = ""
-        loginURL = ""
-        user = users.get_current_user()
-        if user:
-            loginTitle = "logout"
-            loginURL= users.create_logout_url('/')
-        else:
-            loginTitle = "login"
-            loginURL= users.create_login_url('/')
+        templateVars = {"title" : "Nick Michael's Fine Gallery"}
 
-        photos = File.query()
-
-        templateVars = {
-                        "title" : "Nick Michael's Fine Gallery",
-                        "loginURL" : loginURL,
-                        "loginTitle":loginTitle,
-                        "photos":photos}
-
-
-        self.render_template("/templates/landingPage.html", templateVars)
+        self.render_template("/templates/adminHome.html", templateVars)
 
 
 #File Upload Handlers
@@ -56,9 +39,11 @@ class MainPage(BaseHandler):
 class FileUploadFormHandler(BaseHandler):
   @util.login_required
   def get(self):
+    photos = File.query()
     self.render_template("/templates/fileUpload.html", {
-        'form_url': blobstore.create_upload_url('/admin/file/upload'),
+        'form_url': blobstore.create_upload_url('/admin/photos/upload'),
         'logout_url': users.create_logout_url('/'),
+        'photos' : photos
     })
 
 
@@ -74,7 +59,7 @@ class FileUploadHandler(blobstore_handlers.BlobstoreUploadHandler):
                 self.redirect(users.create_login_url("/"))
                 return
 
-            #if uploading a csv file, update the datastore to match
+            #if uploading a csv file, update the datastore to match records in file
             if blob_info.content_type == "application/vnd.ms-excel":
                 blobdata=blobstore.BlobReader(blob_info)
                 reader = csv.DictReader(blobdata,dialect='excel')
@@ -130,7 +115,7 @@ class FileUploadHandler(blobstore_handlers.BlobstoreUploadHandler):
                     file = File(blob=blob_info.key(), file_name=blob_info.filename, uploaded_by=users.get_current_user(), url=images.get_serving_url(blob_info.key()))
                     file.put()
 
-                self.redirect("/admin/file/%s/success" % blob_info.key())
+                self.redirect("/admin/photos/%s/success" % blob_info.key())
 
 
 class AjaxSuccessHandler(BaseHandler):
@@ -170,7 +155,7 @@ class GenerateUploadUrlHandler(BaseHandler):
   @util.login_required
   def get(self):
     self.response.headers['Content-Type'] = 'text/plain'
-    self.response.out.write(blobstore.create_upload_url('/admin/file/upload'))
+    self.response.out.write(blobstore.create_upload_url('/admin/photos/upload'))
 
 
 class DeleteFiles(BaseHandler):

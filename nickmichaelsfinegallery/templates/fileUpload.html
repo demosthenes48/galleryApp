@@ -1,9 +1,6 @@
-{% extends "/templates/base.html" %}
+{% extends "/templates/adminBase.html" %}
 {% block title %}Nick Michael's Fine Galler: Upload Photos{% endblock %}
-{% block head %}
-    <title>{{title}}</title>
-    <link rel="stylesheet" href="/static/css/base.css" />
-
+{% block scriptsAndStylesheets %}
     <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/themes/base/jquery-ui.css" type="text/css" />
     <link rel="stylesheet" href="/static/plupload/jquery.ui.plupload/css/jquery.ui.plupload.css" type="text/css" />
 
@@ -14,16 +11,18 @@
     <script type="text/javascript" src="/static/plupload/plupload.full.min.js"></script>
     <script type="text/javascript" src="/static/plupload/jquery.ui.plupload/jquery.ui.plupload.js"></script>
 
-    <!-- debug
-    <script type="text/javascript" src="../../js/moxie.js"></script>
-    <script type="text/javascript" src="../../js/plupload.dev.js"></script>
-    <script type="text/javascript" src="../../js/jquery.ui.plupload/jquery.ui.plupload.js"></script>
-    -->
+    <script>
+        $( document ).ready(function() {
+            $(".tab").removeClass("active");
+            $("#photosTab").addClass("active");
+        });
+    </script>
+
 {% endblock %}
 
 {% block content %}
 
-    <form id="form" method="post" action="/admin/file/upload">
+    <form id="form" method="post" action="/admin/photos/upload">
         <div id="uploader">
             <p>Your browser doesn't have Flash, Silverlight or HTML5 support.</p>
         </div>
@@ -31,13 +30,22 @@
         <input type="submit" value="Submit" />
     </form>
 
+    <div>
+        {% for photo in photos %}
+            <tr>
+                <td><img src="{{ photo.url }}" alt="{{ photo.file_name }}"/></td>
+                <td>{{ photo.file_name }}</td>
+            </tr>
+        {% endfor %}
+    </div>
+
     <script type="text/javascript">
     // Initialize the widget when the DOM is ready
     $(function() {
         $("#uploader").plupload({
             // General settings
             runtimes : 'html5,flash,silverlight,html4',
-            url : '/admin/file/upload',
+            url : '/admin/photos/upload',
 
             // User can upload no more then 20 files in one go (sets multiple_queues to false)
             max_file_count: 20,
@@ -88,7 +96,7 @@
             preinit : {
                 UploadFile: function(up, file) {
                     $.ajax({
-                        url: '/admin/file/generate_upload_url',
+                        url: '/admin/photos/generate_upload_url',
                         async: false,
                         success: function(data) {
                           up.settings.url = data;

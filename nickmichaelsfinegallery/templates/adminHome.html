@@ -1,9 +1,5 @@
-{% extends "/templates/base.html" %}
+{% extends "/templates/adminBase.html" %}
 {% block title %}Nick Michael's Fine Gallery{% endblock %}
-{% block head %}
-    <title>{{title}}</title>
-    <link rel="stylesheet" href="/static/css/base.css" />
-{% endblock %}
 
 {% block content %}
     {% for photo in photos %}
