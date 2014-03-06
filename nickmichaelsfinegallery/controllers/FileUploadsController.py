@@ -27,9 +27,21 @@ class BaseHandler(webapp2.RequestHandler):
     self.response.write(template.render(template_args))
 
 class MainPage(BaseHandler):
-
     def get(self):
-        templateVars = {"title" : "Nick Michael's Fine Gallery"}
+        loginTitle = ""
+        loginURL = ""
+        user = users.get_current_user()
+        if user:
+            loginTitle = "logout"
+            loginURL= users.create_logout_url('/')
+        else:
+            loginTitle = "login"
+            loginURL= users.create_login_url('/')
+        templateVars = {
+                        "title" : "Nick Michael's Fine Gallery",
+                        "loginURL" : loginURL,
+                        "loginTitle":loginTitle
+                        }
 
         self.render_template("/templates/adminHome.html", templateVars)
 
@@ -49,9 +61,7 @@ class FileUploadFormHandler(BaseHandler):
 
 class FileUploadHandler(blobstore_handlers.BlobstoreUploadHandler):
     def post(self):
-        logging.error("In the UploadHandler")
         for blob_info in self.get_uploads():
-            logging.error("In the For each Blob")
             if not users.get_current_user():
                 #if they are not logged in then delete all the upload data and redirect them to login
                 for blob in self.get_uploads():
@@ -96,7 +106,6 @@ class FileUploadHandler(blobstore_handlers.BlobstoreUploadHandler):
 
             #otherwise we assume it is a photo (since it only allows jpg, png, gif, and csv)
             else:
-                logging.error("In the photo section")
                 #check to see if a photo with that name already exists
                 qry = File.query(File.file_name==blob_info.filename)
                 existingPhoto = qry.get()
@@ -110,7 +119,6 @@ class FileUploadHandler(blobstore_handlers.BlobstoreUploadHandler):
 
                     existingPhoto.put()
                 else:
-                    logging.error("Adding New Photo")
                     #add a new file entry if no file with that name already exists
                     file = File(blob=blob_info.key(), file_name=blob_info.filename, uploaded_by=users.get_current_user(), url=images.get_serving_url(blob_info.key()))
                     file.put()
@@ -120,7 +128,6 @@ class FileUploadHandler(blobstore_handlers.BlobstoreUploadHandler):
 
 class AjaxSuccessHandler(BaseHandler):
     def get(self, file_id):
-        logging.error("In the SuccessHandler")
         self.response.headers['Content-Type'] = 'text/plain'
         self.response.out.write('%s/file/%s' % (self.request.host_url, file_id))
 

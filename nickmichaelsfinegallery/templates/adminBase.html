@@ -19,7 +19,7 @@
                             <ul class="nav">
                                 <li class="active tab" id="homeTab"><a href="/admin">Home</a></li>
                                 <li class="tab" id="photosTab"><a href="/admin/photos">Photos</a></li>
-                                <li class="tab" id="artistsTab"><a href="#">Artists</a></li>
+                                <li class="tab" id="artistsTab"><a href="/admin/artists">Artists</a></li>
                                 <li class="tab" id="categoriesTab"><a href="#">Categories</a></li>
                                 <li class="tab" id="artTab"><a href="#">Art</a></li>
                             </ul>
@@ -27,9 +27,11 @@
                     </div>
             </div>
 
-            {% block content %}
-                This is where the different text for each page goes
-            {% endblock %}
+            <div class="container">
+                {% block content %}
+                    This is where the different text for each page goes
+                {% endblock %}
+            </div>
 
             <div id="footer" style="text-align:center;">
                 {% block footerText %}

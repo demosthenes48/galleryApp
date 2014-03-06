@@ -12,7 +12,6 @@ class MainPage(webapp2.RequestHandler):
     def get(self):
         template = JINJA_ENVIRONMENT.get_template('/templates/publicHome.html')
 
-
         loginTitle = ""
         loginURL = ""
         user = users.get_current_user()

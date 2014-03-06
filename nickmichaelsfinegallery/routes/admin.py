@@ -1,12 +1,18 @@
 import webapp2
 
 from controllers.FileUploadsController import *
+from controllers.AdminArtistsController import *
 
 app = webapp2.WSGIApplication([
 
-    # Admin Routes
+    # Admin Page RoutesRoutes
     (r'/admin', MainPage),
     (r'/admin/photos', FileUploadFormHandler),
+    (r'/admin/artists', ArtistsPage),
+    (r'/admin/artists/create', CreateArtist),
+    (r'/admin/artists/delete', DeleteArtists),
+
+    #Admin Photo Uploads
     (r'/admin/photos/generate_upload_url', GenerateUploadUrlHandler),
     (r'/admin/photos/upload', FileUploadHandler),
     (r'/admin/photos/delete', DeleteFiles),
