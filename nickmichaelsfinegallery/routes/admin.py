@@ -8,9 +8,12 @@ app = webapp2.WSGIApplication([
     # Admin Page RoutesRoutes
     (r'/admin', MainPage),
     (r'/admin/photos', FileUploadFormHandler),
+
+    #Admin Artist Management
     (r'/admin/artists', ArtistsPage),
     (r'/admin/artists/create', CreateArtist),
-    (r'/admin/artists/delete', DeleteArtists),
+    (r'/admin/artists/edit', EditArtist),
+    (r'/admin/artists/delete', DeleteArtist),
 
     #Admin Photo Uploads
     (r'/admin/photos/generate_upload_url', GenerateUploadUrlHandler),
