@@ -51,7 +51,7 @@ class MainPage(BaseHandler):
 class FileUploadFormHandler(BaseHandler):
   @util.login_required
   def get(self):
-    photos = File.query()
+    photos = File.query().order(File.file_name)
     self.render_template("/templates/fileUpload.html", {
         'form_url': blobstore.create_upload_url('/admin/photos/upload'),
         'logout_url': users.create_logout_url('/'),
