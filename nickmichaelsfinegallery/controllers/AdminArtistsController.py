@@ -47,6 +47,32 @@ class ArtistsPage(BaseHandler):
 
         self.render_template("/templates/adminArtists.html", templateVars)
 
+class RefreshArtistTable(BaseHandler):
+    def get(self):
+        photos = {}
+        artists = Artist.query().order(Artist.firstName, Artist.lastName)
+
+        for artist in artists:
+            photos[artist.key] = artist.picture.get()
+        html = ""
+        for artist in artists:
+            html+="""<tr>
+                        <td>""" + artist.firstName + """</td>
+                        <td>""" + artist.lastName + """</td>
+                        <td>""" + artist.biography + """</td>
+                        <td>""" + photos[artist.key].file_name + """</td>
+                        <td>
+                            <a data-toggle="modal"  href="#editArtistModal" onclick="fillEditModalDefaults(""" + str(artist.key.id()) + ", '" + artist.firstName +"', '" + artist.lastName +"', '" + artist.biography + "', '" + photos[artist.key].file_name + """');" class="btn btn-medium">
+                                <span class="glyphicon icon-edit"></span>
+                            </a>
+                            <a data-toggle="modal" data-id=\"""" + str(artist.key.id()) + """\" href="#deleteArtistModal" class="open-deleteArtistModal btn btn-medium">
+                                <span class="glyphicon icon-remove"></span>
+                            </a>
+                        </td>
+                    </tr>"""
+
+        self.response.write(html)
+
 class CreateArtist(BaseHandler):
     def post(self):
         firstName = self.request.get('firstName')
@@ -55,12 +81,10 @@ class CreateArtist(BaseHandler):
         photoName = self.request.get('photoName')
 
         #get the photo specified by the user
-        qry = File.query(File.file_name==photoName)
-        photo = qry.get()
+        photo = File.query(File.file_name==photoName).get()
 
         #check to see if a artist with that name already exists
-        qry = Artist.query(Artist.firstName==firstName and Artist.lastName==lastName)
-        existingArtist = qry.get()
+        existingArtist = Artist.query(Artist.firstName==firstName and Artist.lastName==lastName).get()
 
         if existingArtist:
             #if an artist with that name already exists, then update the information with the form data
@@ -76,8 +100,9 @@ class CreateArtist(BaseHandler):
         else:
             #add a new artist entry if no artist with that name already exists
             artist = Artist(biography=biography, firstName=firstName, lastName=lastName, picture=photo.key, uploaded_by=users.get_current_user())
+            logging.error("artist bio: %s" % artist.biography)
             artist.put()
-            message = "Successfully created artist record: " + existingArtist.firstName + " " + existingArtist.lastName
+            message = "Successfully created artist record: " + artist.firstName + " " + artist.lastName
 
         self.response.write(message)
 

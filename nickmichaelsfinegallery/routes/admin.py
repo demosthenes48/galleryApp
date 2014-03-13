@@ -14,6 +14,7 @@ app = webapp2.WSGIApplication([
     (r'/admin/artists/create', CreateArtist),
     (r'/admin/artists/edit', EditArtist),
     (r'/admin/artists/delete', DeleteArtist),
+    (r'/admin/artists/refresh', RefreshArtistTable),
 
     #Admin Photo Uploads
     (r'/admin/photos/generate_upload_url', GenerateUploadUrlHandler),

@@ -1,10 +1,5 @@
-        $( document ).ready(function() {
-            $(".tab").removeClass("active");
-            $("#artistsTab").addClass("active");
-        });
-
-
         //generate create, edit, and delete ajax forms
+
         $('#createArtistForm').ajaxForm({
             target: '#createFormMessage',
             success: showResponse
@@ -22,9 +17,9 @@
 
 
          //manage button clicks for modals
+
         function createOKClicked () {
 			$('#createArtistForm').submit();
-			closeDialog ();
 		};
 
         function createCancelClicked () {
@@ -35,7 +30,6 @@
 
 		function editSaveClicked () {
 			$('#editArtistForm').submit();
-			closeDialog ();
 		};
 
 		function editCancelClicked () {
@@ -52,36 +46,40 @@
 
 		function deleteDeleteClicked () {
 			$('#deleteArtistForm').submit();
-			closeDialog ();
 		};
 
 
         //generic showResponse and clearForm functions
+
         function showResponse(responseText, statusText, xhr, $form)  {
             $form.find('.successMessage').show();
             setTimeout(function(){
 									$form.closest('.modal').modal('hide');
 									$form.find('.successMessage').hide();
                                     clearForm($form);
+
+                                    //update the appropriate form
+                                    formID = $form.attr('id');
+                                    if (formID=="createArtistForm" || formID=="editArtistForm" || formID=="deleteArtistForm"){
+                                        $('#artistTableBody').load('/admin/artists/refresh');
+                                    }
+
                                  }, 3000);
         }
 
 		function clearForm (form) {
 			form.find("input[type=text], textarea").val("");
-			clearCreateForm();
 		};
 
+        function updateArtistTable () {
+
+        };
 
         //pass parameters to modals
+
 		$(document).on("click", ".open-deleteArtistModal", function () {
              var myDeleteArtistID = $(this).data('id');
              $("#deleteArtistKey").val(myDeleteArtistID);
-        });
-
-        $(document).on("click", ".open-editArtistModal", function () {
-             var myEditArtistID = $(this).data('id');
-             $("#deleteArtistKey").val(myDeleteArtistID);
-             console.log($("#deleteArtistKey").val());
         });
 
         function fillEditModalDefaults(key, firstName, lastName, biography, photoName){

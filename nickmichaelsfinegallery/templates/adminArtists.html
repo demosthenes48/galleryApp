@@ -7,6 +7,14 @@
 	<script src="http://static.scripting.com/github/bootstrap2/js/bootstrap-modal.js"></script>
     <script type="text/javascript" src="/static/js/jquery.form.js"></script>
     <script type="text/javascript" src="/static/js/ajaxifyForms.js"></script>
+
+    <script>
+        $( document ).ready(function() {
+            $(".tab").removeClass("active");
+            $("#artistsTab").addClass("active");
+        });
+    </script>
+
 {% endblock %}
 
 {% block content %}
@@ -24,7 +32,7 @@
             <th></th>
         </tr>
         </thead>
-        <tbody>
+        <tbody id="artistTableBody">
         {% for artist in artists %}
         <tr>
             <td>{{ artist.firstName }}</td>
