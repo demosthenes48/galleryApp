@@ -71,10 +71,15 @@ class CreateArtist(BaseHandler):
             existingArtist.uploaded_by=users.get_current_user()
 
             existingArtist.put()
+            message = "Successfully updated artist record: " + existingArtist.firstName + " " + existingArtist.lastName
+
         else:
             #add a new artist entry if no artist with that name already exists
             artist = Artist(biography=biography, firstName=firstName, lastName=lastName, picture=photo.key, uploaded_by=users.get_current_user())
             artist.put()
+            message = "Successfully created artist record: " + existingArtist.firstName + " " + existingArtist.lastName
+
+        self.response.write(message)
 
 
 class EditArtist(BaseHandler):
@@ -101,9 +106,20 @@ class EditArtist(BaseHandler):
 
         artist.put()
 
+        message = "Successfully updated artist record: " + artist.firstName + " " + artist.lastName
+        self.response.write(message)
+
 
 class DeleteArtist(BaseHandler):
     def post(self):
         artistKeyString = self.request.get('deleteArtistKey')
-        artistKey = ndb.Key('Artist', int(artistKeyString))
+
+        #generate message
+        artist = Artist.get_by_id(int(artistKeyString))
+        message = "Successfully deleted artist: " + artist.firstName + " " + artist.lastName
+
+        #delete artist
+        artistKey = artist.key
         artistKey.delete()
+
+        self.response.write(message)

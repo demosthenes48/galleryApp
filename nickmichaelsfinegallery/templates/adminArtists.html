@@ -5,95 +5,8 @@
     <script src="http://static.scripting.com/github/bootstrap2/js/jquery.js"></script>
 	<script src="http://static.scripting.com/github/bootstrap2/js/bootstrap-transition.js"></script>
 	<script src="http://static.scripting.com/github/bootstrap2/js/bootstrap-modal.js"></script>
-
-    <script>
-        $( document ).ready(function() {
-            $(".tab").removeClass("active");
-            $("#artistsTab").addClass("active");
-        });
-
-        $('#createArtistForm').on('submit', function(e) {
-            e.preventDefault(); //Prevents default submit
-            var form = $(this);
-            var post_url = form.attr('action');
-            var post_data = form.serialize();
-            $('#loader', form).html('<img src="/static/bootstrap/img/forms/loader.gif" /> Please Wait...');
-            $.ajax({
-                type: 'POST',
-                url: '/admin/artists/create',
-                data: post_data,
-                success: function(msg) {
-                    $(form).fadeOut(500, function(){
-                        form.html(msg).fadeIn();
-                    });
-                }
-            });
-        });
-
-        $('#editArtistForm').on('submit', function(e) {
-            e.preventDefault(); //Prevents default submit
-            var form = $(this);
-            var post_url = form.attr('action');
-            var post_data = form.serialize();
-            $.ajax({
-                type: 'POST',
-                url: '/admin/artists/edit',
-                data: post_data,
-                success: function(msg) {
-                    $(form).fadeOut(500, function(){
-                        form.html(msg).fadeIn();
-                    });
-                }
-            });
-        });
-
-		function createCancelClicked () {
-			$('#createArtistModal').modal('hide');
-		};
-
-		function createOKClicked () {
-			$('#createArtistForm').submit();
-			closeDialog ();
-		};
-
-		function deleteCancelClicked () {
-			$('#deleteArtistModal').modal('hide');
-		};
-
-		function deleteDeleteClicked () {
-			$('#deleteArtistForm').submit();
-			closeDialog ();
-		};
-
-		$(document).on("click", ".open-deleteArtistModal", function () {
-             var myDeleteArtistID = $(this).data('id');
-             $("#deleteArtistKey").val(myDeleteArtistID);
-        });
-
-        function fillEditModalDefaults(key, firstName, lastName, biography, photoName){
-            biography = biography.replace(/\r?\n/g, "<br />");
-            $("#editArtistKey").val(key)
-            $("#editFirstName").val(firstName)
-            $("#editLastName").val(lastName)
-            $("#editBiography").val(biography)
-            $("#editPhotoName").val(photoName)
-        }
-
-        $(document).on("click", ".open-editArtistModal", function () {
-             var myEditArtistID = $(this).data('id');
-             $("#deleteArtistKey").val(myDeleteArtistID);
-             console.log($("#deleteArtistKey").val());
-        });
-
-        function editCancelClicked () {
-			$('#editArtistModal').modal('hide');
-		};
-
-		function editSaveClicked () {
-			$('#editArtistForm').submit();
-			closeDialog ();
-		};
-    </script>
+    <script type="text/javascript" src="/static/js/jquery.form.js"></script>
+    <script type="text/javascript" src="/static/js/ajaxifyForms.js"></script>
 {% endblock %}
 
 {% block content %}
@@ -133,6 +46,8 @@
     </table>
 </div>
 
+
+
 <div id="createArtistModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="createArtistModalLabel" aria-hidden="true">
     <div class="modal-header">
         <a href="#" class="close" data-dismiss="modal">&times;</a>
@@ -170,6 +85,10 @@
                     </div>
                 </div>
 
+                <!-- Form Feedback -->
+                <div id="createFormMessage" class="alert alert-success successMessage" style="display:none;">
+                    Message
+                </div>
             </form>
         </div>
     </div>
@@ -219,6 +138,10 @@
                     </div>
                 </div>
 
+                <!-- Form Feedback -->
+                <div id="editFormMessage" class="alert alert-success successMessage" style="display:none;">
+                    Message
+                </div>
             </form>
         </div>
     </div>
@@ -238,6 +161,11 @@
             Deleting this artist cannot be undone. Are you sure you want to proceed?
             <form id="deleteArtistForm" action="/admin/artists/delete" method="post">
                 <input type="hidden" name="deleteArtistKey" id="deleteArtistKey" value="" />
+
+                <!-- Form Feedback -->
+                <div id="deleteFormMessage" class="alert alert-success successMessage" style="display:none;">
+                    Message
+                </div>
             </form>
         </div>
     </div>
