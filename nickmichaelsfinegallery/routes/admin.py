@@ -1,7 +1,9 @@
 import webapp2
 
-from controllers.FileUploadsController import *
 from controllers.AdminArtistsController import *
+from controllers.AdminCategoriesController import *
+from controllers.FileUploadsController import *
+
 
 app = webapp2.WSGIApplication([
 
@@ -15,6 +17,13 @@ app = webapp2.WSGIApplication([
     (r'/admin/artists/edit', EditArtist),
     (r'/admin/artists/delete', DeleteArtist),
     (r'/admin/artists/refresh', RefreshArtistTable),
+
+    #Admin Category Management
+    (r'/admin/categories', CategoriesPage),
+    (r'/admin/categories/create', CreateCategory),
+    (r'/admin/categories/edit', EditCategory),
+    (r'/admin/categories/delete', DeleteCategory),
+    (r'/admin/categories/refresh', RefreshCategoriesTable),
 
     #Admin Photo Uploads
     (r'/admin/photos/generate_upload_url', GenerateUploadUrlHandler),
