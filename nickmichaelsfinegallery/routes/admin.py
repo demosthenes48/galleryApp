@@ -1,5 +1,6 @@
 import webapp2
 
+from controllers.AdminArtController import *
 from controllers.AdminArtistsController import *
 from controllers.AdminCategoriesController import *
 from controllers.FileUploadsController import *
@@ -7,9 +8,11 @@ from controllers.FileUploadsController import *
 
 app = webapp2.WSGIApplication([
 
-    # Admin Page RoutesRoutes
-    (r'/admin', MainPage),
-    (r'/admin/photos', FileUploadFormHandler),
+    #Admin Art Management
+    (r'/admin', ArtPage),
+    (r'/admin/art/edit', EditArt),
+    (r'/admin/art/delete', DeleteArt),
+    (r'/admin/art/refresh', RefreshArtTable),
 
     #Admin Artist Management
     (r'/admin/artists', ArtistsPage),
@@ -26,6 +29,7 @@ app = webapp2.WSGIApplication([
     (r'/admin/categories/refresh', RefreshCategoriesTable),
 
     #Admin Photo Uploads
+    (r'/admin/photos', FileUploadFormHandler),
     (r'/admin/photos/generate_upload_url', GenerateUploadUrlHandler),
     (r'/admin/photos/upload', FileUploadHandler),
     (r'/admin/photos/delete', DeleteFiles),

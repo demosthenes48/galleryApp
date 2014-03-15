@@ -1,0 +1,47 @@
+{% extends "/templates/adminBase.html" %}
+{% block title %}Manage Art{% endblock %}
+
+{% block scriptsAndStylesheets %}
+    <script src="http://static.scripting.com/github/bootstrap2/js/jquery.js"></script>
+	<script src="http://static.scripting.com/github/bootstrap2/js/bootstrap-transition.js"></script>
+	<script src="http://static.scripting.com/github/bootstrap2/js/bootstrap-modal.js"></script>
+    <script type="text/javascript" src="/static/js/jquery.form.js"></script>
+    <script type="text/javascript" src="/static/js/ajaxifyForms.js"></script>
+
+    <script>
+        $( document ).ready(function() {
+            $(".tab").removeClass("active");
+            $("#artTab").addClass("active");
+        });
+    </script>
+
+{% endblock %}
+
+{% block content %}
+<div>
+    <table id="artTable" class="table table-striped table-bordered table-condensed">
+        <thead>
+        <tr>
+            <th>Artist</th>
+            <th>Art Name</th>
+            <th>Item Number</th>
+            <th>Categories</th>
+            <th>Price</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody id="artTableBody">
+        {% for artpiece in art %}
+        <tr>
+            <td>{{ artpiece.artist.firstName }} {{ artpiece.artist.lastName }}</td>
+            <td>{{ artpiece.name }}</td>
+            <td>{{ artpiece.itemNumber }}</td>
+            <td>{{ artpiece.categories }}</td>
+            <td>{{ artpiece.price }}</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}
