@@ -40,7 +40,7 @@
             <td>{{ categoriesList[artpiece.key] }}</td>
             <td>{{ artpiece.priceDisplay }}</td>
             <td>
-                <a data-toggle="modal"  href="#editArtModal" onclick="fillEditArtModalDefaults({{ artpiece.key.id() }},'{{ artpiece.artist.get().firstName }} {{ artpiece.artist.get().lastName }}', '{{ categoriesList[artpiece.key] }}', '{{ artpiece.name }}', '{{ artpiece.price }}', '{{ artpiece.itemNumber }}', '{{ artpiece.width }}', '{{ artpiece.height }}', '{{ artpiece.depth }}', '{{ artpiece.weight }}', '{{ artpiece.description }}', '{{ artpiece.colors }}', '{{ artpiece.mediums }}', '{{ artpiece.masterArtPiece }}', '{{ artpiece.picture.get().file_name }}');" class="btn btn-medium">
+                <a data-toggle="modal"  href="#editArtModal" onclick="fillEditArtModalDefaults({{ artpiece.key.id() }},'{{ artpiece.artist.get().firstName }} {{ artpiece.artist.get().lastName }}', '{{ categoriesList[artpiece.key] }}', '{{ artpiece.name }}', '{{ artpiece.price }}', '{{ artpiece.itemNumber }}', '{{ artpiece.width }}', '{{ artpiece.height }}', '{{ artpiece.depth }}', '{{ artpiece.weight }}', '{{ artpiece.description }}', '{{ artpiece.colors }}', '{{ artpiece.mediums }}', '{{ masterItemNumberList[artpiece.key] }}', '{{ artpiece.picture.get().file_name }}');" class="btn btn-medium">
                     <span class="glyphicon icon-edit"></span>
                 </a>
                 <a data-toggle="modal" data-id="{{ artpiece.key.id() }}" href="#deleteArtModal" class="open-deleteArtModal btn btn-medium">

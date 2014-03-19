@@ -26,10 +26,8 @@
       <file leaf-file-name="admin.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/routes/admin.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="16" column="30" selection-start="485" selection-end="485" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="799">
-              <folding>
-                <element signature="e#0#14#0" expanded="true" />
-              </folding>
+            <state line="16" column="30" selection-start="485" selection-end="485" vertical-scroll-proportion="0.0" vertical-offset="272" max-vertical-offset="799">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -37,23 +35,20 @@
       <file leaf-file-name="AdminArtController.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/controllers/AdminArtController.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="199" column="0" selection-start="8599" selection-end="8599" vertical-scroll-proportion="0.5447898" vertical-offset="2779" max-vertical-offset="3757">
-              <folding />
+            <state line="245" column="40" selection-start="11523" selection-end="11523" vertical-scroll-proportion="0.23211169" vertical-offset="4032" max-vertical-offset="4913">
+              <folding>
+                <element signature="e#0#14#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="adminArt.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/adminArt.html">
+      <file leaf-file-name="AdminCategoriesController.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/controllers/AdminCategoriesController.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="167" column="26" selection-start="8363" selection-end="8363" vertical-scroll-proportion="-5.1153846" vertical-offset="2706" max-vertical-offset="4318">
+            <state line="62" column="123" selection-start="2050" selection-end="2072" vertical-scroll-proportion="0.0" vertical-offset="725" max-vertical-offset="2448">
               <folding>
-                <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#form#0;n#div#0;n#div#1;n#div#2;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#input#0;n#a#0;n#div#0;n#form#0;n#div#0;n#div#1;n#div#2;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#1;n#form#0;n#div#0;n#div#1;n#div#2;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#14;n#form#0;n#div#0;n#div#1;n#div#3;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#form#0;n#div#0;n#div#1;n#div#4;n#!!top" expanded="true" />
+                <element signature="e#0#14#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -62,7 +57,16 @@
       <file leaf-file-name="ajaxifyForms.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/static/js/ajaxifyForms.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="77" column="33" selection-start="1844" selection-end="1844" vertical-scroll-proportion="53.0" vertical-offset="2687" max-vertical-offset="4250">
+            <state line="5" column="44" selection-start="156" selection-end="156" vertical-scroll-proportion="0.0" vertical-offset="85" max-vertical-offset="4250">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="adminArt.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/adminArt.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="96" column="16" selection-start="4730" selection-end="10478" vertical-scroll-proportion="-9.153846" vertical-offset="1394" max-vertical-offset="4318">
               <folding />
             </state>
           </provider>
@@ -91,9 +95,9 @@
         <option value="$PROJECT_DIR$/templates/adminBase.html" />
         <option value="$PROJECT_DIR$/templates/adminArtists.html" />
         <option value="$PROJECT_DIR$/models/artpiece.py" />
-        <option value="$PROJECT_DIR$/controllers/AdminArtController.py" />
-        <option value="$PROJECT_DIR$/templates/adminArt.html" />
         <option value="$PROJECT_DIR$/static/js/ajaxifyForms.js" />
+        <option value="$PROJECT_DIR$/templates/adminArt.html" />
+        <option value="$PROJECT_DIR$/controllers/AdminArtController.py" />
       </list>
     </option>
   </component>
@@ -129,6 +133,7 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -223,7 +228,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -231,8 +235,8 @@
     <property name="options.lastSelected" value="project.propVCSSupport.Mappings" />
     <property name="FullScreen" value="false" />
     <property name="DefaultHtmlFileTemplate" value="Html5" />
-    <property name="options.searchVisible" value="true" />
     <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="options.searchVisible" value="true" />
   </component>
   <component name="PyConsoleOptionsProvider">
     <option name="myPythonConsoleState">
@@ -399,7 +403,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="7" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -481,16 +485,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/fileUpload.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="113" column="11" selection-start="3860" selection-end="3860" vertical-scroll-proportion="-59.653847" vertical-offset="370" max-vertical-offset="2397">
-          <folding />
-        </state>
+        <state line="113" column="11" selection-start="3860" selection-end="3860" vertical-scroll-proportion="-59.653847" vertical-offset="370" max-vertical-offset="2397" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/models/artist.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="4" selection-start="401" selection-end="515" vertical-scroll-proportion="0.26109216" vertical-offset="0" max-vertical-offset="586">
-          <folding />
-        </state>
+        <state line="10" column="4" selection-start="401" selection-end="515" vertical-scroll-proportion="0.26109216" vertical-offset="0" max-vertical-offset="586" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/controllers/FileUploadsController.py">
@@ -504,91 +504,74 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app.yaml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="816">
-          <folding />
-        </state>
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="816" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/controllers/AdminArtistsController.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="52" column="18" selection-start="1506" selection-end="1520" vertical-scroll-proportion="0.20069808" vertical-offset="769" max-vertical-offset="2618">
-          <folding>
-            <element signature="e#0#14#0" expanded="false" />
-          </folding>
-        </state>
+        <state line="52" column="18" selection-start="1506" selection-end="1520" vertical-scroll-proportion="0.20069808" vertical-offset="769" max-vertical-offset="2618" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/routes/admin.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="16" column="30" selection-start="485" selection-end="485" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="799">
-          <folding>
-            <element signature="e#0#14#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/adminBase.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="53" column="0" selection-start="2210" selection-end="2210" vertical-scroll-proportion="1.4053571" vertical-offset="114" max-vertical-offset="1088">
-          <folding />
-        </state>
+        <state line="53" column="0" selection-start="2210" selection-end="2210" vertical-scroll-proportion="1.4053571" vertical-offset="114" max-vertical-offset="1088" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/adminCategories.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="129" column="0" selection-start="5339" selection-end="6450" vertical-scroll-proportion="0.06764168" vertical-offset="2156" max-vertical-offset="2703">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/controllers/AdminCategoriesController.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="4" column="14" selection-start="57" selection-end="64" vertical-scroll-proportion="0.13001911" vertical-offset="0" max-vertical-offset="2448">
-          <folding />
-        </state>
+        <state line="129" column="0" selection-start="5339" selection-end="6450" vertical-scroll-proportion="0.06764168" vertical-offset="2156" max-vertical-offset="2703" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/adminArtists.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="42" column="16" selection-start="1527" selection-end="1851" vertical-scroll-proportion="-10.192307" vertical-offset="449" max-vertical-offset="3230">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/adminArt.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="167" column="26" selection-start="8363" selection-end="8363" vertical-scroll-proportion="-5.1153846" vertical-offset="2706" max-vertical-offset="4318">
-          <folding>
-            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#form#0;n#div#0;n#div#1;n#div#2;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#input#0;n#a#0;n#div#0;n#form#0;n#div#0;n#div#1;n#div#2;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#1;n#form#0;n#div#0;n#div#1;n#div#2;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#14;n#form#0;n#div#0;n#div#1;n#div#3;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#form#0;n#div#0;n#div#1;n#div#4;n#!!top" expanded="true" />
-          </folding>
-        </state>
+        <state line="42" column="16" selection-start="1527" selection-end="1851" vertical-scroll-proportion="-10.192307" vertical-offset="449" max-vertical-offset="3230" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/models/artpiece.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="15" column="36" selection-start="610" selection-end="621" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="527">
           <folding>
-            <element signature="e#0#36#0" expanded="true" />
+            <element signature="e#0#36#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/static/js/ajaxifyForms.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="77" column="33" selection-start="1844" selection-end="1844" vertical-scroll-proportion="53.0" vertical-offset="2687" max-vertical-offset="4250">
+        <state line="5" column="44" selection-start="156" selection-end="156" vertical-scroll-proportion="0.0" vertical-offset="85" max-vertical-offset="4250">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controllers/AdminCategoriesController.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="62" column="123" selection-start="2050" selection-end="2072" vertical-scroll-proportion="0.0" vertical-offset="725" max-vertical-offset="2448">
+          <folding>
+            <element signature="e#0#14#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/adminArt.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="96" column="16" selection-start="4730" selection-end="10478" vertical-scroll-proportion="-9.153846" vertical-offset="1394" max-vertical-offset="4318">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/controllers/AdminArtController.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="199" column="0" selection-start="8599" selection-end="8599" vertical-scroll-proportion="0.5447898" vertical-offset="2779" max-vertical-offset="3757">
-          <folding />
+        <state line="245" column="40" selection-start="11523" selection-end="11523" vertical-scroll-proportion="0.23211169" vertical-offset="4032" max-vertical-offset="4913">
+          <folding>
+            <element signature="e#0#14#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

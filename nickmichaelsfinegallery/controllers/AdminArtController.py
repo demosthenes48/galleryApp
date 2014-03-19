@@ -42,10 +42,12 @@ class ArtPage(BaseHandler):
 
         uploadURL = blobstore.create_upload_url('/admin/art/upload')
         categoriesList = {}
+        masterItemNumberList = {}
 
         art = ArtPiece.query().order(ArtPiece.name)
 
         for artpiece in art:
+            #create a comma separated string of categories
             categories = ndb.get_multi(artpiece.categories)
             categoryNamesList = []
             for category in categories:
@@ -53,12 +55,18 @@ class ArtPage(BaseHandler):
             categoryNamesString = ",".join(categoryNamesList)
             categoriesList[artpiece.key] = categoryNamesString
 
+            #check for null master art piece
+            itemNumber = '' if artpiece.masterArtPiece is None else artpiece.masterArtPiece.get().itemNumber
+            masterItemNumberList[artpiece.key] = itemNumber
+
+
         templateVars = {
                         "title" : "Manage Art",
                         "loginURL" : loginURL,
                         "loginTitle": loginTitle,
                         "art": art,
                         "categoriesList": categoriesList,
+                        "masterItemNumberList": masterItemNumberList,
                         "uploadURL": uploadURL
                         }
 
@@ -86,6 +94,9 @@ class RefreshArtTable(BaseHandler):
                         <td>""" + categoriesList[artpiece.key] + """</td>
                         <td>""" + artpiece.priceDisplay + """</td>
                         <td>
+                            <a data-toggle="modal"  href="#editArtModal" onclick="fillEditArtModalDefaults(""" + str(artpiece.key.id()) + ",'" + artpiece.artist.get().firstName + " " + artpiece.artist.get().lastName + "', '" + categoriesList[artpiece.key] + "', '" + artpiece.name + "', '" + artpiece.price + "', '" + artpiece.itemNumber + "', '" + artpiece.width + "', '" + artpiece.height + "', '" + artpiece.depth + "', '" + artpiece.weight + "', '" + artpiece.description + "', '" + artpiece.colors + "', '" + artpiece.mediums + "', '" + ('' if artpiece.masterArtPiece is None else artpiece.masterArtPiece.get().itemNumber) + "', '" + artpiece.picture.get().file_name + """');" class="btn btn-medium">
+                                <span class="glyphicon icon-edit"></span>
+                            </a>
                             <a data-toggle="modal" data-id=\"""" + str(artpiece.key.id()) + """\" href="#deleteArtModal" class="open-deleteArtModal btn btn-medium">
                                 <span class="glyphicon icon-remove"></span>
                             </a>
@@ -190,24 +201,63 @@ class UploadArt(blobstore_handlers.BlobstoreUploadHandler):
 
 class EditArt(BaseHandler):
     def post(self):
-        categoryKeyString = self.request.get('editCategoryKey')
-        categoryID = int(categoryKeyString)
-        categoryName = self.request.get('editCategoryName')
-        photoName = self.request.get('editCategoryPhotoName')
+        artpieceKeyString = self.request.get('editArtKey')
+        artpieceID = int(artpieceKeyString)
+        artistString = self.request.get('editArtist')
+        categoriesString = self.request.get('editCategories')
+        name = self.request.get('editName')
+        price = self.request.get('editPrice')
+        priceDisplay = "$" + '{:20,.2f}'.format(Decimal(price))
+        itemNumber = self.request.get('editItemNumber')
+        width = self.request.get('editWidth')
+        height = self.request.get('editHeight')
+        depth = self.request.get('editDepth')
+        weight = self.request.get('editWeight')
+        description = self.request.get('editProductDescription')
+        colors = self.request.get('editColors')
+        mediums = self.request.get('editMediums')
+        masterItemNum = self.request.get('editMasterArtNum')
+        pictureName = self.request.get('editProductPhotoName')
 
-        #get the photo specified by the user
-        photo = File.query(File.file_name==photoName).get()
+        #find related objects to tie to this artpiece
+        artistNameList=artistString.split(" ")
+        artistFirstName=artistNameList[0]
+        artistLastName=artistNameList[-1]
+        artist = Artist.query(Artist.firstName==artistFirstName, Artist.lastName==artistLastName).get()
+        categories = []
+        categoriesList = categoriesString.split(",")
+        for categoryString in categoriesList:
+            category = Category.query(Category.categoryName==categoryString.strip()).get()
+            categories.append(category)
+        masterArtPiece = ArtPiece.query(ArtPiece.itemNumber==masterItemNum).get()
+        photo = File.query(File.file_name==pictureName.upper()).get()
 
-        #get the category based on the key and update all fields
-        category = Category.get_by_id(categoryID)
+        #get the artpiece based on the key and update all fields accordingly
+        artpiece = ArtPiece.get_by_id(artpieceID)
 
-        category.categoryName=categoryName
-        category.picture=photo.key
-        category.uploaded_by=users.get_current_user()
+        artpiece.artist = artist.key
+        artpiece.categories = []
+        for category in categories:
+            artpiece.categories.append(category.key)
+        artpiece.colors = colors
+        artpiece.depth = depth
+        artpiece.description = description
+        artpiece.height = height
+        artpiece.itemNumber = itemNumber
+        if masterArtPiece:
+            artpiece.masterArtPiece = masterArtPiece.key
+        artpiece.mediums = mediums
+        artpiece.name = name
+        artpiece.picture = photo.key
+        artpiece.price = price
+        artpiece.priceDisplay = priceDisplay
+        artpiece.uploaded_by=users.get_current_user()
+        artpiece.weight = weight
+        artpiece.width = width
 
-        category.put()
+        artpiece.put()
 
-        message = "Successfully updated category record: " + category.categoryName
+        message = "Successfully updated artpiece record: " + artpiece.name
         self.response.write(message)
 
 
