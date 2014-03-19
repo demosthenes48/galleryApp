@@ -1,27 +1,26 @@
 from google.appengine.ext import ndb
 from artist import Artist
-from dimension import Dimension
 from category import Category
-from color import Color
-from medium import Medium
 from file import File
-from weight import Weight
 
 class ArtPiece (ndb.Model):
     """Models an individual ArtPiece entry"""
-    activeFlag = ndb.BooleanProperty
+    activeFlag = ndb.BooleanProperty(default=True)
     artist = ndb.KeyProperty(kind=Artist)
     categories = ndb.KeyProperty(kind=Category, repeated=True)
-    color = ndb.KeyProperty(kind=Color, repeated=True)
-    depth = ndb.KeyProperty(kind=Dimension)
+    colors = ndb.StringProperty(indexed=True)
+    depth = ndb.StringProperty(indexed=True)
     description = ndb.StringProperty(indexed=False)
-    height = ndb.KeyProperty(kind=Dimension)
+    height = ndb.StringProperty(indexed=True)
     itemNumber = ndb.StringProperty(indexed=True)
     masterArtPiece = ndb.KeyProperty(kind='ArtPiece')
-    masterArtFlag = ndb.BooleanProperty
-    medium = ndb.KeyProperty(kind=Medium, repeated=True)
+    masterArtFlag = ndb.BooleanProperty(default=False)
+    mediums = ndb.StringProperty(indexed=True)
     name = ndb.StringProperty(indexed=True)
     picture = ndb.KeyProperty(kind=File)
-    price = ndb.FloatProperty
-    weight = ndb.KeyProperty(kind=Weight)
-    width = ndb.KeyProperty(kind=Dimension)
+    price = ndb.StringProperty(indexed=True)
+    priceDisplay = ndb.StringProperty(indexed=False)
+    uploaded_at = ndb.DateTimeProperty(required=True, auto_now=True)
+    uploaded_by = ndb.UserProperty(required=True)
+    weight = ndb.StringProperty(indexed=True)
+    width = ndb.StringProperty(indexed=True)

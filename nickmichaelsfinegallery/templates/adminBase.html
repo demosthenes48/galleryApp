@@ -50,6 +50,9 @@
             if (footerTop < docHeight) {
                 $('#footer').css('margin-top', 0+ (docHeight - footerTop) + 'px');
             }
+            {% block documentReadyBlock %}
+
+            {% endblock %}
           });
          </script>
     </body>

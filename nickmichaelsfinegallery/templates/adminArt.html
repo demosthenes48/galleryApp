@@ -1,6 +1,11 @@
 {% extends "/templates/adminBase.html" %}
 {% block title %}Manage Art{% endblock %}
 
+{% block documentReady %}
+    $(".tab").removeClass("active");
+    $("#artTab").addClass("active");
+{% endblock %}
+
 {% block scriptsAndStylesheets %}
     <script src="http://static.scripting.com/github/bootstrap2/js/jquery.js"></script>
 	<script src="http://static.scripting.com/github/bootstrap2/js/bootstrap-transition.js"></script>
@@ -8,16 +13,12 @@
     <script type="text/javascript" src="/static/js/jquery.form.js"></script>
     <script type="text/javascript" src="/static/js/ajaxifyForms.js"></script>
 
-    <script>
-        $( document ).ready(function() {
-            $(".tab").removeClass("active");
-            $("#artTab").addClass("active");
-        });
-    </script>
-
 {% endblock %}
 
 {% block content %}
+<div style="padding-bottom:8px;">
+    <a data-toggle="modal" class="btn btn-primary btn-medium" href="#uploadArtModal">Bulk Upload Art</a>
+</div>
 <div>
     <table id="artTable" class="table table-striped table-bordered table-condensed">
         <thead>
@@ -33,15 +34,216 @@
         <tbody id="artTableBody">
         {% for artpiece in art %}
         <tr>
-            <td>{{ artpiece.artist.firstName }} {{ artpiece.artist.lastName }}</td>
+            <td>{{ artpiece.artist.get().firstName }} {{ artpiece.artist.get().lastName }}</td>
             <td>{{ artpiece.name }}</td>
             <td>{{ artpiece.itemNumber }}</td>
-            <td>{{ artpiece.categories }}</td>
-            <td>{{ artpiece.price }}</td>
+            <td>{{ categoriesList[artpiece.key] }}</td>
+            <td>{{ artpiece.priceDisplay }}</td>
+            <td>
+                <a data-toggle="modal"  href="#editArtModal" onclick="fillEditArtModalDefaults({{ artpiece.key.id() }},'{{ artpiece.artist.get().firstName }} {{ artpiece.artist.get().lastName }}', '{{ categoriesList[artpiece.key] }}', '{{ artpiece.name }}', '{{ artpiece.price }}', '{{ artpiece.itemNumber }}', '{{ artpiece.width }}', '{{ artpiece.height }}', '{{ artpiece.depth }}', '{{ artpiece.weight }}', '{{ artpiece.description }}', '{{ artpiece.colors }}', '{{ artpiece.mediums }}', '{{ artpiece.masterArtPiece }}', '{{ artpiece.picture.get().file_name }}');" class="btn btn-medium">
+                    <span class="glyphicon icon-edit"></span>
+                </a>
+                <a data-toggle="modal" data-id="{{ artpiece.key.id() }}" href="#deleteArtModal" class="open-deleteArtModal btn btn-medium">
+                    <span class="glyphicon icon-remove"></span>
+                </a>
+            </td>
         </tr>
         {% endfor %}
         </tbody>
     </table>
+</div>
+
+<div id="uploadArtModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="UploadArtModalLabel" aria-hidden="true">
+    <div class="modal-header">
+        <a href="#" class="close" data-dismiss="modal">&times;</a>
+        <h3>Bulk Upload Art</h3>
+    </div>
+    <div class="modal-body">
+        <div class="divDialogElements">
+            <form id="uploadArtForm" method="post" action="{{uploadURL}}" enctype="multipart/form-data">
+                <div style="position:relative;">
+                    <a class='btn btn-primary' href='javascript:;'>
+                        Choose File...
+                        <input id="uploadArtInputFile" type="file" name="file" accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" style="position:absolute;z-index:2;top:0;left:0;filter: alpha(opacity=0);-ms-filter:'progid:DXImageTransform.Microsoft.Alpha(Opacity=0)';opacity:0;background-color:transparent;color:transparent;" size="40"  onchange="$('#upload-file-info').html($(this).val());">
+                    </a>
+                    &nbsp;
+                    <span class='label label-info' id="upload-file-info"></span>
+                </div>
+                <br>
+                <!-- Form Feedback -->
+                <div id="uploadArtFormMessage" class="alert alert-success successMessage" style="display:none;">
+                    Message
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <a href="#" class="btn" onclick="uploadArtCancelClicked();">Cancel</a>
+        <a href="#" class="btn btn-primary" onclick="uploadArtUploadClicked();">Upload</a>
+    </div>
+</div>
+
+
+<div id="editArtModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="EditArtModalLabel" aria-hidden="true">
+    <div class="modal-header">
+        <a href="#" class="close" data-dismiss="modal">&times;</a>
+        <h3>Edit Artpiece</h3>
+    </div>
+    <div class="modal-body">
+        <div class="divDialogElements">
+            <form id="editArtForm" action="/admin/art/edit" method="post">
+
+                <!-- Art Key -->
+                <input type="hidden" name="editArtKey" id="editArtKey"/>
+
+                <!-- Text input-->
+                <div class="control-group">
+                    <label class="control-label" for="editArtist">Artist</label>
+                    <div class="controls">
+                        <input id="editArtist" name="editArtist" type="text" placeholder="Artist Name (e.g. Donnie Wanner)" class="input-xlarge span5" required="">
+                    </div>
+                </div>
+
+                <!-- Text input-->
+                <div class="control-group">
+                    <label class="control-label" for="editCategories">Categories</label>
+                    <div class="controls">
+                        <input id="editCategories" name="editCategories" type="text" placeholder="Categories (e.g. Metal Art, Wall Art)" class="input-xlarge span5" required="">
+                    </div>
+                </div>
+
+                <!-- Text input -->
+                <div class="control-group">
+                    <label class="control-label" for="editName">Name of Piece</label>
+                    <div class="controls">
+                        <input id="editName" name="editName" type = "text" placeholder="Name of Piece" class="input-xlarge span5" required="">
+                    </div>
+                </div>
+
+                <!-- Text input-->
+                <div class="control-group">
+                    <label class="control-label" for="editPrice">Price($)</label>
+                    <div class="controls">
+                        <input id="editPrice" name="editPrice" type="text" placeholder="Price($)" class="input-xlarge span5" required="">
+                    </div>
+                </div>
+
+                <!-- Text input-->
+                <div class="control-group">
+                    <label class="control-label" for="editItemNumber">Item Number</label>
+                    <div class="controls">
+                        <input id="editItemNumber" name="editItemNumber" type="text" placeholder="Item Number" class="input-xlarge span5" required="">
+                    </div>
+                </div>
+
+                <!-- Text input-->
+                <div class="control-group">
+                    <label class="control-label" for="editWidth">Width(in)</label>
+                    <div class="controls">
+                        <input id="editWidth" name="editWidth" type="text" placeholder="Width(in)" class="input-xlarge span5">
+                    </div>
+                </div>
+
+                <!-- Text input-->
+                <div class="control-group">
+                    <label class="control-label" for="editHeight">Height(in)</label>
+                    <div class="controls">
+                        <input id="editHeight" name="editHeight" type="text" placeholder="Height(in)" class="input-xlarge span5">
+                    </div>
+                </div>
+
+                <!-- Text input-->
+                <div class="control-group">
+                    <label class="control-label" for="editDepth">Depth(in)</label>
+                    <div class="controls">
+                        <input id="editDepth" name="editDepth" type="text" placeholder="Depth(in)" class="input-xlarge span5">
+                    </div>
+                </div>
+
+                <!-- Text input-->
+                <div class="control-group">
+                    <label class="control-label" for="editWeight">Weight(lbs)</label>
+                    <div class="controls">
+                        <input id="editWeight" name="editWeight" type="text" placeholder="Weight(lbs)" class="input-xlarge span5">
+                    </div>
+                </div>
+
+                <!-- Textarea -->
+                <div class="control-group">
+                    <label class="control-label" for="editProductDescription">Product Description</label>
+                    <div class="controls">
+                        <textarea id="editProductDescription" name="editProductDescription" placeholder="Product Description" class="span5" rows="6"></textarea>
+                    </div>
+                </div>
+
+                <!-- Text input-->
+                <div class="control-group">
+                    <label class="control-label" for="editColors">Colors</label>
+                    <div class="controls">
+                        <input id="editColors" name="editColors" type="text" placeholder="Colors" class="input-xlarge span5">
+                    </div>
+                </div>
+
+                <!-- Text input-->
+                <div class="control-group">
+                    <label class="control-label" for="editMediums">Mediums</label>
+                    <div class="controls">
+                        <input id="editMediums" name="editMediums" type="text" placeholder="Mediums" class="input-xlarge span5">
+                    </div>
+                </div>
+
+                <!-- Text input-->
+                <div class="control-group">
+                    <label class="control-label" for="editMasterArtNum">Master Art Item Number</label>
+                    <div class="controls">
+                        <input id="editMasterArtNum" name="editMasterArtNum" type="text" placeholder="Master Art Item Number" class="input-xlarge span5">
+                    </div>
+                </div>
+
+                <!-- Text input-->
+                <div class="control-group">
+                    <label class="control-label" for="editProductPhotoName">Photo Name</label>
+                    <div class="controls">
+                        <input id="editProductPhotoName" name="editProductPhotoName" type="text" placeholder="Photo Name (e.g. DW004.jpg)" class="input-xlarge span5" required="">
+                    </div>
+                </div>
+
+                <!-- Form Feedback -->
+                <div id="editArtFormMessage" class="alert alert-success successMessage" style="display:none;">
+                    Message
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <a href="#" class="btn" onclick="editArtCancelClicked();">Cancel</a>
+        <a href="#" class="btn btn-primary" onclick="editArtSaveClicked();">Save Changes</a>
+    </div>
+</div>
+
+
+<div id="deleteArtModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="DeleteArtModalLabel" aria-hidden="true">
+    <div class="modal-header">
+        <a href="#" class="close" data-dismiss="modal">&times;</a>
+        <h3>Are you sure?</h3>
+    </div>
+    <div class="modal-body">
+        <div class="divDialogElements">
+            Deleting this piece of art cannot be undone. Are you sure you want to proceed?
+            <form id="deleteArtForm" action="/admin/art/delete" method="post">
+                <input type="hidden" name="deleteArtKey" id="deleteArtKey" value="" />
+
+                <!-- Form Feedback -->
+                <div id="deleteArtFormMessage" class="alert alert-success successMessage" style="display:none;">
+                    Message
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <a href="#" class="btn btn-danger" onclick="deleteArtDeleteClicked();">Delete</a>
+        <a href="#" class="btn" onclick="deleteArtCancelClicked();">Cancel</a>
+    </div>
 </div>
 
 {% endblock %}

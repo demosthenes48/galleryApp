@@ -10,8 +10,10 @@ app = webapp2.WSGIApplication([
 
     #Admin Art Management
     (r'/admin', ArtPage),
+    (r'/admin/art/upload', UploadArt),
     (r'/admin/art/edit', EditArt),
     (r'/admin/art/delete', DeleteArt),
+    (r'/admin/art/deleteAll', DeleteAllArt),
     (r'/admin/art/refresh', RefreshArtTable),
 
     #Admin Artist Management

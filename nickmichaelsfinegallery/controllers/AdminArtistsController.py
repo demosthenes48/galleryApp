@@ -81,7 +81,7 @@ class CreateArtist(BaseHandler):
         photoName = self.request.get('photoName')
 
         #get the photo specified by the user
-        photo = File.query(File.file_name==photoName).get()
+        photo = File.query(File.file_name==photoName.upper()).get()
 
         #check to see if a artist with that name already exists
         existingArtist = Artist.query(Artist.firstName==firstName and Artist.lastName==lastName).get()
@@ -100,7 +100,6 @@ class CreateArtist(BaseHandler):
         else:
             #add a new artist entry if no artist with that name already exists
             artist = Artist(biography=biography, firstName=firstName, lastName=lastName, picture=photo.key, uploaded_by=users.get_current_user())
-            logging.error("artist bio: %s" % artist.biography)
             artist.put()
             message = "Successfully created artist record: " + artist.firstName + " " + artist.lastName
 
@@ -117,8 +116,7 @@ class EditArtist(BaseHandler):
         photoName = self.request.get('editPhotoName')
 
         #get the photo specified by the user
-        qry = File.query(File.file_name==photoName)
-        photo = qry.get()
+        photo = File.query(File.file_name==photoName.upper()).get()
 
         #get the artist based on the key and update all fields
         artist = Artist.get_by_id(artistID)

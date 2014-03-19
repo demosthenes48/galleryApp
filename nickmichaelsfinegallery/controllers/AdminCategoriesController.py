@@ -77,7 +77,7 @@ class CreateCategory(BaseHandler):
         photoName = self.request.get('photoName')
 
         #get the photo specified by the user
-        photo = File.query(File.file_name==photoName).get()
+        photo = File.query(File.file_name==photoName.upper()).get()
 
         #check to see if a category with that name already exists
         existingCategory = Category.query(Category.categoryName==categoryName).get()
@@ -108,7 +108,7 @@ class EditCategory(BaseHandler):
         photoName = self.request.get('editCategoryPhotoName')
 
         #get the photo specified by the user
-        photo = File.query(File.file_name==photoName).get()
+        photo = File.query(File.file_name==photoName.upper()).get()
 
         #get the category based on the key and update all fields
         category = Category.get_by_id(categoryID)

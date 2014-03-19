@@ -108,7 +108,7 @@ class FileUploadHandler(blobstore_handlers.BlobstoreUploadHandler):
             #otherwise we assume it is a photo (since it only allows jpg, png, gif, and csv)
             else:
                 #check to see if a photo with that name already exists
-                qry = File.query(File.file_name==blob_info.filename)
+                qry = File.query(File.file_name==blob_info.filename.upper())
                 existingPhoto = qry.get()
 
                 if existingPhoto:
@@ -121,7 +121,7 @@ class FileUploadHandler(blobstore_handlers.BlobstoreUploadHandler):
                     existingPhoto.put()
                 else:
                     #add a new file entry if no file with that name already exists
-                    file = File(blob=blob_info.key(), file_name=blob_info.filename, uploaded_by=users.get_current_user(), url=images.get_serving_url(blob_info.key()))
+                    file = File(blob=blob_info.key(), file_name=blob_info.filename.upper(), uploaded_by=users.get_current_user(), url=images.get_serving_url(blob_info.key()))
                     file.put()
 
                 self.redirect("/admin/photos/%s/success" % blob_info.key())
