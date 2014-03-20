@@ -2,6 +2,7 @@ import webapp2
 import jinja2
 import os
 
+from models.category import Category
 from google.appengine.api import users
 
 JINJA_ENVIRONMENT = jinja2.Environment(
@@ -22,9 +23,17 @@ class MainPage(webapp2.RequestHandler):
             loginTitle = "login"
             loginURL= users.create_login_url('/')
 
+        photos = {}
+        categories = Category.query().order(Category.categoryName)
+
+        for category in categories:
+            photos[category.key] = category.picture.get()
+
         templateVars = {
                         "title" : "Nick Michael's Fine Gallery",
                         "loginURL" : loginURL,
-                        "loginTitle":loginTitle}
+                        "loginTitle":loginTitle,
+                        "categories": categories,
+                        "photos": photos}
 
         self.response.write(template.render(templateVars))

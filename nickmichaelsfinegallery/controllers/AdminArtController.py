@@ -43,8 +43,14 @@ class ArtPage(BaseHandler):
         uploadURL = blobstore.create_upload_url('/admin/art/upload')
         categoriesList = {}
         masterItemNumberList = {}
+        art = []
 
-        art = ArtPiece.query().order(ArtPiece.name)
+        #sort the art by artist name and then by artpiece name
+        artists = Artist.query().order(Artist.firstName, Artist.lastName)
+        for artist in artists:
+            artistArt = ArtPiece.query().order(ArtPiece.name).filter(ArtPiece.artist==artist.key)
+            for artpiece in artistArt:
+                art.append(artpiece)
 
         for artpiece in art:
             #create a comma separated string of categories
@@ -76,7 +82,14 @@ class ArtPage(BaseHandler):
 class RefreshArtTable(BaseHandler):
     def get(self):
         categoriesList = {}
-        art = ArtPiece.query().order(ArtPiece.name)
+        art = []
+
+        #sort the art by artist name and then by artpiece name
+        artists = Artist.query().order(Artist.firstName, Artist.lastName)
+        for artist in artists:
+            artistArt = ArtPiece.query().order(ArtPiece.name).filter(ArtPiece.artist==artist.key)
+            for artpiece in artistArt:
+                art.append(artpiece)
 
         for artpiece in art:
             categories = ndb.get_multi(artpiece.categories)
