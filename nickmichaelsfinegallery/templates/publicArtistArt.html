@@ -1,0 +1,44 @@
+{% extends "/templates/publicBase.html" %}
+{% block title %}{{ title }}{% endblock %}
+
+{% block javascript %}
+    <script>
+        $( document ).ready(function() {
+            $("ul.nav li").removeClass("active");
+            $("#artistsTab").addClass("active");
+        });
+    </script>
+{% endblock %}
+
+{% block content %}
+<h3>{{ artist.firstName }} {{ artist.lastName }}</h3>
+<ul class="thumbnails">
+    <li class="span3">
+        <div class="thumbnail">
+            <img data-src="holder.js/300x200" alt="300x200" style="width: 300px; height: 200px;" src="{{ artist.picture.get().url }}">
+        </div>
+    </li>
+    <li class="span9">
+        <div class="thumbnail">
+            <h5>Biography</h5>
+            {{ artist.biography }}
+        </div>
+    </li>
+</ul>
+
+<ul class="thumbnails">
+    {% for artpiece in art %}
+    <li class="span3">
+        <div class="thumbnail">
+            <img data-src="holder.js/300x200" alt="300x200" style="width: 300px; height: 200px;" src="{{ photos[artpiece.key].url }}">
+            <div class="caption">
+                <h5>{{ artpiece.name }}</h5>
+                <p>{{ artpiece.description }}</p>
+                {{ artpiece.priceDisplay }}
+            </div>
+        </div>
+    </li>
+    {% endfor %}
+</ul>
+
+{% endblock %}

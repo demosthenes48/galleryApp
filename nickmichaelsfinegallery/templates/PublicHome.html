@@ -7,10 +7,7 @@
     <li class="span3">
         <div class="thumbnail">
             <span>{{ category.categoryName }}</span>
-            <img data-src="holder.js/300x200" alt="300x200" style="width: 300px; height: 200px;" src="{{ photos[category.key].url }}">
-            <div class="caption">
-                <h3>{{ category.categoryName }}</h3>
-            </div>
+            <a href="{{'/category?categoryName='+category.categoryName}}"><img data-src="holder.js/300x200" alt="300x200" style="width: 300px; height: 200px;" src="{{ photos[category.key].url }}"></a>
         </div>
     </li>
     {% endfor %}

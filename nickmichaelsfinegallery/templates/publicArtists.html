@@ -1,0 +1,25 @@
+{% extends "/templates/publicBase.html" %}
+{% block title %}Artists{% endblock %}
+
+{% block javascript %}
+    <script>
+        $( document ).ready(function() {
+            $("ul.nav li").removeClass("active");
+            $("#artistsTab").addClass("active");
+        });
+    </script>
+{% endblock %}
+
+{% block content %}
+<ul class="thumbnails">
+    {% for artist in artists %}
+    <li class="span3">
+        <div class="thumbnail">
+            <span>{{ artist.firstName }} {{ artist.lastName }}</span>
+            <a href="/artist?artistID={{ artist.key.id()}}"><img data-src="holder.js/300x200" alt="300x200" style="width: 300px; height: 200px;" src="{{ photos[artist.key].url }}"></a>
+        </div>
+    </li>
+    {% endfor %}
+</ul>
+
+{% endblock %}

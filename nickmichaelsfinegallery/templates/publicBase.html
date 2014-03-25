@@ -25,6 +25,11 @@
         <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/static/bootstrap/ico/apple-touch-icon-72-precomposed.png">
         <link rel="apple-touch-icon-precomposed" href="/static/bootstrap/ico/apple-touch-icon-57-precomposed.png">
         <link rel="shortcut icon" href="/static/bootstrap/ico/favicon.png">
+
+        <!-- Add custom stylesheets to individual pages -->
+        {% block stylesheets %}
+
+        {% endblock %}
     </head>
     <body>
 
@@ -40,9 +45,10 @@
                     <a class="brand" href="#">Nick Michael's Fine Gallery</a>
                     <div class="nav-collapse collapse">
                         <ul class="nav">
-                            <li class="active"><a href="#">Home</a></li>
-                            <li><a href="#about">Artists</a></li>
-                            <li><a href="#contact">About Us</a></li>
+                            <li class="active" id="homeTab"><a href="/">Home</a></li>
+                            <li id="artistsTab"><a href="/artists">Artists</a></li>
+                            <li id="aboutUsTab"><a href="#">About Us</a></li>
+                            <li id="contactUsTab"><a href="#">Contact Us</a></li>
                         </ul>
                     </div><!--/.nav-collapse -->
                 </div>
@@ -79,14 +85,16 @@
         <footer class="footer">
             <div class="container">
                 <div class="row">
-                    <div class="span6"><p><strong>&copy;2014 Nick Michael's Fine Gallery</strong> - Capturing the beauty of Alaska in art</p></div>
+                    <div class="span6"><p><strong>&copy;2014 Nick Michael's Fine Gallery</strong> - Capturing the Beauty of Alaska in Art</p></div>
                     <div class="span6">
                         <ul class="footer-links">
-                            <li><a href="#">Home</a></li>
+                            <li><a href="/">Home</a></li>
                             <li class="muted">·</li>
-                            <li><a href="#">Artists</a></li>
+                            <li><a href="/artists">Artists</a></li>
                             <li class="muted">·</li>
                             <li><a href="#">About Us</a></li>
+                            <li class="muted">·</li>
+                            <li><a href="#">Contact Us</a></li>
                         </ul>
                     </div>
                 </div>
@@ -112,5 +120,9 @@
         <script src="/static/bootstrap/js/prettyCheckable.js"></script>
         <script src="/static/bootstrap/js/main.js"></script>
 
+        <!-- Add custom  javascript to individual pages -->
+        {% block javascript %}
+
+        {% endblock %}
     </body>
 </html>
