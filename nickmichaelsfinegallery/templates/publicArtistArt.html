@@ -28,16 +28,18 @@
 
 <ul class="thumbnails">
     {% for artpiece in art %}
-    <li class="span3">
-        <div class="thumbnail">
-            <img data-src="holder.js/300x200" alt="300x200" style="width: 300px; height: 200px;" src="{{ photos[artpiece.key].url }}">
-            <div class="caption">
-                <h5>{{ artpiece.name }}</h5>
-                <p>{{ artpiece.description }}</p>
-                {{ artpiece.priceDisplay }}
+    <a href="/artpiece?itemNumber={{ artpiece.itemNumber}}">
+        <li class="span3">
+            <div class="thumbnail">
+                <img data-src="holder.js/300x200" alt="300x200" style="width: 300px; height: 200px;" src="{{ photos[artpiece.key].url }}">
+                <div class="caption">
+                    <h5>{{ artpiece.name }}</h5>
+                    <p>{{ artpiece.description }}</p>
+                    {{ artpiece.priceDisplay }}
+                </div>
             </div>
-        </div>
-    </li>
+        </li>
+    </a>
     {% endfor %}
 </ul>
 
