@@ -1,0 +1,24 @@
+{% extends "/templates/publicBase.html" %}
+{% block title %}Nick Michael's Fine Gallery{% endblock %}
+
+{% block javascript %}
+    <script>
+        $( document ).ready(function() {
+            $("ul.nav li").removeClass("active");
+            $("#aboutUsTab").addClass("active");
+        });
+    </script>
+{% endblock %}
+
+{% block content %}
+<h3>About Us</h3>
+
+For many years, Michael has had a love of bronze sculptures and glass art. In pursuing this love, Michael and his wife, Lana, created a unique gallery consisting of the largest bronze collection in Alaska. In addition to the breathtaking life-size bronze sculptures of wildlife and children, the gallery features glass art from several Alaskan artists and other artists from the U.S. and around the world.
+<br><br>
+While living in Alaska, Michael and Lana have met many Alaskan artists who have turned natural resources found in Alaska into priceless works of art, including antler carvings, whale bone carvings, and petrified ivory and mammoth bone. No animal has been killed to provide the medium for this incredible art. All antlers and bones have been gathered by Alaskan natives or the artists themselves.
+<br><br>
+Whether you are looking for a small carving, piece of glass art, or a large bronze sculpture for your home, yard, or business, you will not find a better selection or value. Nick Michael’s Fine Gallery is a locally owned and operated family business bringing quality art to the public at a price that will fit anyone’s budget.
+<br><br>
+We would love to hear from you if you have any comments or questions. Click here to contact us today!
+
+{% endblock %}

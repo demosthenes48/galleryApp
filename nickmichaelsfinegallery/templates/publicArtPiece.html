@@ -17,8 +17,8 @@
         </div>
     </li>
     <li class="span6">
-        <div class="thumbnail">
-            <B><Font size=+1.5>{{ artpiece.name }}</Font> </B>
+        <div class="thumbnail" style="overflow:auto; height:200px;">
+            <B><Font size=+1.5>{{ artpiece.name }} ({{ artpiece.itemNumber }})</Font> </B>
             <br>
             {{ artpiece.priceDisplay }}
             <br>
@@ -30,9 +30,7 @@
         <h5>Details</h5>
         <ul>
             <li>Dimensions: {{ artpiece.width }}"W x {{ artpiece.height }}"H x {{ artpiece.depth }}"D</li>
-            <li>Weight: {{ artpiece.weight}}</li>
-            <li>Categories: {{ categories }}</li>
-            <li>Colors: {{ artpiece.colors}}</li>
+            <li>Weight: {{ artpiece.weight}} lbs.</li>
             <li>Mediums: {{ artpiece.mediums}}</li>
         </ul>
     </li>
@@ -40,7 +38,7 @@
 
 <ul class="thumbnails">
     <li class="span6">
-        <div class="thumbnail">
+        <div class="thumbnail" style="overflow:auto; height:200px;">
             <h5>Artist Biography</h5>
             {{ artist.biography }}
         </div>
@@ -52,7 +50,7 @@
     </li>
     <li class="span3">
         <h4>{{ artist.firstName }} {{ artist.lastName }}</h4>
-        <button class="btn btn-primary">Other Art by Artist</button>
+        <a href="/artist?artistID={{ artist.key.id()}}"><div class="btn btn-primary">Other Art by Artist</div></a>
 
     </li>
 </ul>

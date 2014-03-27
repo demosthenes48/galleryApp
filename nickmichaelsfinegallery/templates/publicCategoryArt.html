@@ -12,21 +12,23 @@
 
 {% block content %}
 <h3>{{ category.categoryName }}</h3>
+{% for artist in artists %}
+<h4>{{ artist.firstName}} {{ artist.lastName }}</h4>
 <ul class="thumbnails">
-    {% for artpiece in art %}
+    {% for artpiece in artpieces[artist.key] %}
     <a href="/artpiece?itemNumber={{ artpiece.itemNumber}}">
         <li class="span3">
             <div class="thumbnail">
                 <img data-src="holder.js/300x200" alt="300x200" style="width: 300px; height: 200px;" src="{{ photos[artpiece.key].url }}">
                 <div class="caption">
-                    <h5>{{ artpiece.name }}</h5>
-                    <p>{{ artpiece.description }}</p>
-                    {{ artpiece.priceDisplay }}
+                    <div class="artpieceName"><h5>{{ artpiece.name }}</h5></div>
+                    <p>{{ artpiece.priceDisplay }}</p>
                 </div>
             </div>
         </li>
     </a>
     {% endfor %}
 </ul>
+{% endfor %}
 
 {% endblock %}

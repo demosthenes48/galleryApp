@@ -13,6 +13,12 @@ indexes:
 - kind: ArtPiece
   properties:
   - name: artist
+  - name: categories
+  - name: name
+
+- kind: ArtPiece
+  properties:
+  - name: artist
   - name: name
 
 - kind: Artist

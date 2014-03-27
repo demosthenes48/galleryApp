@@ -18,7 +18,7 @@
             <img data-src="holder.js/300x200" alt="300x200" style="width: 300px; height: 200px;" src="{{ artist.picture.get().url }}">
         </div>
     </li>
-    <li class="span9">
+    <li class="span9" style="overflow:auto; height:210px;">
         <div class="thumbnail">
             <h5>Biography</h5>
             {{ artist.biography }}
@@ -33,9 +33,8 @@
             <div class="thumbnail">
                 <img data-src="holder.js/300x200" alt="300x200" style="width: 300px; height: 200px;" src="{{ photos[artpiece.key].url }}">
                 <div class="caption">
-                    <h5>{{ artpiece.name }}</h5>
-                    <p>{{ artpiece.description }}</p>
-                    {{ artpiece.priceDisplay }}
+                    <div class="artpieceName"><h5>{{ artpiece.name }}</h5></div>
+                    <p>{{ artpiece.priceDisplay }}</p>
                 </div>
             </div>
         </li>

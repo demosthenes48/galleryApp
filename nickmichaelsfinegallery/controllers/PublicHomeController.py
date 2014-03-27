@@ -39,15 +39,32 @@ class CategoryArtPage(webapp2.RequestHandler):
         categoryKey = category.key
 
         photos = {}
-        art = ArtPiece.query(ArtPiece.categories.IN([categoryKey]))
+        artpieces = {}
 
-        for artpiece in art:
+        allArt = ArtPiece.query(ArtPiece.categories.IN([categoryKey]))
+        artistKeys = set([])
+        for artpiece in allArt:
+            #save the photo for this artipiece for later use
             photos[artpiece.key] = artpiece.picture.get()
+            artistKeys.add(artpiece.artist)
+
+        #get the list of artists who have art in this category
+        artists = Artist.query(Artist.key.IN(list(artistKeys))).order(Artist.firstName, Artist.lastName)
+
+        #create and save a list of artpieces for each artist that match this category
+        for artist in artists:
+            artistArt = []
+            for artpiece in allArt:
+                if artpiece.artist==artist.key:
+                    artistArt.append(artpiece)
+            artistArt.sort(key=lambda x: x.name)
+            artpieces[artist.key] = artistArt
 
         templateVars = {
                         "title" : category.categoryName,
                         "category": category,
-                        "art": art,
+                        "artists": artists,
+                        "artpieces": artpieces,
                         "photos": photos}
 
         self.response.write(template.render(templateVars))
@@ -80,7 +97,7 @@ class ArtistArtPage(webapp2.RequestHandler):
         artistKey = artist.key
 
         photos = {}
-        art = ArtPiece.query(ArtPiece.artist==artistKey)
+        art = ArtPiece.query(ArtPiece.artist==artistKey).order(ArtPiece.name)
 
         for artpiece in art:
             photos[artpiece.key] = artpiece.picture.get()
@@ -116,5 +133,16 @@ class ArtPiecePage(webapp2.RequestHandler):
                         "artist": artist,
                         "photo": photo,
                         "categories": categoriesString}
+
+        self.response.write(template.render(templateVars))
+
+
+class AboutUsPage(webapp2.RequestHandler):
+    def get(self):
+        template = JINJA_ENVIRONMENT.get_template('/templates/publicAboutUs.html')
+
+        templateVars = {
+                        "title" : "About Us"
+                       }
 
         self.response.write(template.render(templateVars))

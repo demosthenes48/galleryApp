@@ -9,7 +9,8 @@ app = webapp2.WSGIApplication([
     (r'/category', CategoryArtPage),
     (r'/artists', ArtistsPage),
     (r'/artist', ArtistArtPage),
-    (r'/artpiece', ArtPiecePage)
+    (r'/artpiece', ArtPiecePage),
+    (r'/aboutUs', AboutUsPage)
 
 
 ], debug=True )
