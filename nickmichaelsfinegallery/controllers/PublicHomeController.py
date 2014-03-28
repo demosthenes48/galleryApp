@@ -41,7 +41,7 @@ class CategoryArtPage(webapp2.RequestHandler):
         photos = {}
         artpieces = {}
 
-        allArt = ArtPiece.query(ArtPiece.categories.IN([categoryKey]))
+        allArt = ArtPiece.query(ArtPiece.categories.IN([categoryKey]),ArtPiece.slaveArtFlag==False)
         artistKeys = set([])
         for artpiece in allArt:
             #save the photo for this artipiece for later use
@@ -97,7 +97,7 @@ class ArtistArtPage(webapp2.RequestHandler):
         artistKey = artist.key
 
         photos = {}
-        art = ArtPiece.query(ArtPiece.artist==artistKey).order(ArtPiece.name)
+        art = ArtPiece.query(ArtPiece.artist==artistKey,ArtPiece.slaveArtFlag==False).order(ArtPiece.name)
 
         for artpiece in art:
             photos[artpiece.key] = artpiece.picture.get()
@@ -127,8 +127,30 @@ class ArtPiecePage(webapp2.RequestHandler):
             categoryNamesList.append(str(category.categoryName))
         categoriesString = ",".join(categoryNamesList)
 
+        #check for additional sizes if this is a master or a slave piece
+        additionalPieces = []
+        if artpiece.masterArtFlag:
+            slavePieces=ArtPiece.query(ArtPiece.masterArtPiece==artpiece.key)
+            for slavepiece in slavePieces:
+                additionalPieces.append(slavepiece)
+        if artpiece.slaveArtFlag:
+            masterArtPiece = ArtPiece.query(ArtPiece.key==artpiece.masterArtPiece).get()
+            otherSlavePieces=ArtPiece.query(ArtPiece.masterArtPiece==masterArtPiece.key,ArtPiece.key<>artpiece.key)
+            additionalPieces.append(masterArtPiece)
+            for slavepiece in otherSlavePieces:
+                additionalPieces.append(slavepiece)
+
+        #generate the appropriate html to link to these other pieces if they exist
+        additionalSizes = ""
+        if len(additionalPieces) > 0:
+            additionalSizes += "<h5>Also Available in Other Sizes:</h5><ul>"
+            for additionalPiece in additionalPieces:
+                additionalSizes += "<a href=\"/artpiece?itemNumber=" + additionalPiece.itemNumber + "\"><li>" + additionalPiece.name + " (" + additionalPiece.priceDisplay + ")</li></a>"
+            additionalSizes += "</ul>"
+
         templateVars = {
                         "title" : artpiece.name,
+                        "additionalSizes": additionalSizes,
                         "artpiece": artpiece,
                         "artist": artist,
                         "photo": photo,

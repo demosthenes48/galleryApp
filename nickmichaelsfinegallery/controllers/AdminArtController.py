@@ -176,6 +176,9 @@ class UploadArt(blobstore_handlers.BlobstoreUploadHandler):
                     existingArtPiece.height = height
                     if masterArtPiece:
                         existingArtPiece.masterArtPiece = masterArtPiece.key
+                        existingArtPiece.slaveArtFlag = True
+                        masterArtPiece.masterArtFlag = True
+                        masterArtPiece.put()
                     existingArtPiece.mediums = mediums
                     existingArtPiece.name = name
                     existingArtPiece.picture = photo.key
@@ -196,6 +199,9 @@ class UploadArt(blobstore_handlers.BlobstoreUploadHandler):
                         artPiece.categories.append(category.key)
                     if masterArtPiece:
                         artPiece.masterArtPiece = masterArtPiece.key
+                        artPiece.slaveArtFlag = True
+                        masterArtPiece.masterArtFlag = True
+                        masterArtPiece.put()
 
                     artPiece.put()
 
@@ -259,6 +265,9 @@ class EditArt(BaseHandler):
         artpiece.itemNumber = itemNumber
         if masterArtPiece:
             artpiece.masterArtPiece = masterArtPiece.key
+            artpiece.slaveArtFlag = True
+            masterArtPiece.masterArtFlag = True
+            masterArtPiece.put()
         artpiece.mediums = mediums
         artpiece.name = name
         artpiece.picture = photo.key

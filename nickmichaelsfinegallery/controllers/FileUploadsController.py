@@ -6,6 +6,8 @@ import csv
 
 from models.file import File
 from models.artpiece import ArtPiece
+from models.artist import Artist
+from models.category import Category
 import urllib
 
 from google.appengine.api import users
@@ -166,7 +168,70 @@ class GenerateUploadUrlHandler(BaseHandler):
     self.response.out.write(blobstore.create_upload_url('/admin/photos/upload'))
 
 
-class DeleteFiles(BaseHandler):
+class RefreshPhotoThumbnails(BaseHandler):
+    def get(self):
+
+        #sort the art by artist name and then by artpiece name
+        photos = File.query().order(File.file_name)
+
+        html = ""
+        for photo in photos:
+            html+="""<li class="span3">
+                        <div class="thumbnail">
+                            <img data-src="holder.js/300x200" alt="300x200" style="width: 300px; height: 200px;" src=""" + photo.url + """>
+                            <div class="caption">
+                                <div class="artpieceName">
+                                    <h5>""" + photo.file_name + """</h5>
+                                    <a data-toggle="modal"  href="#editPhotoModal" onclick="fillEditPhotoModalDefaults(""" + str(photo.key.id()) + """,'""" + photo.file_name + """');" class="btn btn-medium">
+                                        <span class="glyphicon icon-edit"></span>
+                                    </a>
+                                    <a data-toggle="modal" data-id=""" + str(photo.key.id()) + """ href="#deletePhotoModal" class="open-deletePhotoModal btn btn-medium">
+                                        <span class="glyphicon icon-remove"></span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </li>"""
+
+        self.response.write(html)
+
+
+class EditFile(BaseHandler):
+    def post(self):
+        fileKeyString = self.request.get('editPhotoKey')
+        newPhotoName = self.request.get('editPhotoName').upper()
+        fileToEdit = File.get_by_id(int(fileKeyString))
+
+        #check if another file with that name already exists
+        oldFile= File.query(File.file_name==newPhotoName).get()
+        if oldFile:
+            message = "ERROR: A file with that name already exists"
+        else:
+            #Find and update the file name of the current file(not possible to do on the actual blob)
+            fileToEdit.file_name = newPhotoName
+            fileToEdit.put()
+            message = "Successfully updated photo name: " + fileToEdit.file_name
+
+        self.response.write(message)
+
+
+class DeleteFile(BaseHandler):
+    def post(self):
+        fileKeyString = self.request.get('deletePhotoKey')
+
+        #generate message
+        file = File.get_by_id(int(fileKeyString))
+        message = "Successfully deleted photo: " + file.file_name
+
+        #delete file
+        blobstore.delete(file.blob)
+        key = file.key
+        key.delete()
+
+        self.response.write(message)
+
+
+class DeleteAllFiles(BaseHandler):
     def get(self):
         files = File.query()
         for file in files:

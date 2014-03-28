@@ -10,6 +10,10 @@
     <script type="text/javascript" src="/static/plupload/plupload.full.min.js"></script>
     <script type="text/javascript" src="/static/plupload/jquery.ui.plupload/jquery.ui.plupload.js"></script>
 
+	<script src="http://static.scripting.com/github/bootstrap2/js/bootstrap-modal.js"></script>
+    <script type="text/javascript" src="/static/js/jquery.form.js"></script>
+    <script type="text/javascript" src="/static/js/ajaxifyForms.js"></script>
+
     <script>
         $( document ).ready(function() {
             $(".tab").removeClass("active");
@@ -28,14 +32,86 @@
         <br />
     </form>
 
-    <div>
+    <ul class="thumbnails" id="managePhotosThumbnails">
         {% for photo in photos %}
-            <tr>
-                <td><img src="{{ photo.url }}" alt="{{ photo.file_name }}"/></td>
-                <td>{{ photo.file_name }}</td>
-            </tr>
+            <li class="span3">
+                <div class="thumbnail">
+                    <img data-src="holder.js/300x200" alt="300x200" style="width: 300px; height: 200px;" src="{{ photo.url }}">
+                    <div class="caption">
+                        <div class="artpieceName">
+                            <h5>{{ photo.file_name }}</h5>
+                            <a data-toggle="modal"  href="#editPhotoModal" onclick="fillEditPhotoModalDefaults({{ photo.key.id() }},'{{ photo.file_name }}');" class="btn btn-medium">
+                                <span class="glyphicon icon-edit"></span>
+                            </a>
+                            <a data-toggle="modal" data-id="{{ photo.key.id() }}" href="#deletePhotoModal" class="open-deletePhotoModal btn btn-medium">
+                                <span class="glyphicon icon-remove"></span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </li>
         {% endfor %}
+    </ul>
+
+
+    <div id="editPhotoModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="EditPhotoModalLabel" aria-hidden="true">
+        <div class="modal-header">
+            <a href="#" class="close" data-dismiss="modal">&times;</a>
+            <h3>Edit Photo Name</h3>
+        </div>
+        <div class="modal-body">
+            <div class="divDialogElements">
+                <form id="editPhotoForm" action="/admin/photos/edit" method="post">
+
+                    <!-- Art Key -->
+                    <input type="hidden" name="editPhotoKey" id="editPhotoKey"/>
+
+                    <!-- Text input-->
+                    <div class="control-group">
+                        <label class="control-label" for="editPhotoName">Photo Name</label>
+                        <div class="controls">
+                            <input id="editPhotoName" name="editPhotoName" type="text" placeholder="Photo Name (i.e. DW002.jpg) " class="input-xlarge span5" required="">
+                        </div>
+                    </div>
+
+                    <!-- Form Feedback -->
+                    <div id="editPhotoFormMessage" class="alert alert-success serverFeedback" style="display:none;">
+                        Message
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <a href="#" class="btn" onclick="editPhotoCancelClicked();">Cancel</a>
+            <a href="#" class="btn btn-primary" onclick="editPhotoSaveClicked();">Save Changes</a>
+        </div>
     </div>
+
+
+    <div id="deletePhotoModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="DeletePhotoModalLabel" aria-hidden="true">
+        <div class="modal-header">
+            <a href="#" class="close" data-dismiss="modal">&times;</a>
+            <h3>Are you sure?</h3>
+        </div>
+        <div class="modal-body">
+            <div class="divDialogElements">
+                Deleting this photo cannot be undone. Are you sure you want to proceed?
+                <form id="deletePhotoForm" action="/admin/photos/delete" method="post">
+                    <input type="hidden" name="deletePhotoKey" id="deletePhotoKey" value="" />
+
+                    <!-- Form Feedback -->
+                    <div id="deletePhotoFormMessage" class="alert alert-success serverFeedback" style="display:none;">
+                        Message
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <a href="#" class="btn btn-danger" onclick="deletePhotoDeleteClicked();">Delete</a>
+            <a href="#" class="btn" onclick="deletePhotoCancelClicked();">Cancel</a>
+        </div>
+    </div>
+
 
     <script type="text/javascript">
     // Initialize the widget when the DOM is ready

@@ -34,7 +34,10 @@ app = webapp2.WSGIApplication([
     (r'/admin/photos', FileUploadFormHandler),
     (r'/admin/photos/generate_upload_url', GenerateUploadUrlHandler),
     (r'/admin/photos/upload', FileUploadHandler),
-    (r'/admin/photos/delete', DeleteFiles),
+    (r'/admin/photos/delete', DeleteFile),
+    (r'/admin/photos/deleteAll', DeleteAllFiles),
+    (r'/admin/photos/edit', EditFile),
+    (r'/admin/photos/refresh', RefreshPhotoThumbnails),
     (r'/admin/photos/([^/]+)?', FileInfoHandler),
     (r'/admin/photos/([^/]+)?/download', FileDownloadHandler),
     (r'/admin/photos/([^/]+)?/success', AjaxSuccessHandler)

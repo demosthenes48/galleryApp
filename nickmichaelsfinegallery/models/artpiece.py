@@ -15,6 +15,7 @@ class ArtPiece (ndb.Model):
     itemNumber = ndb.StringProperty(indexed=True)
     masterArtPiece = ndb.KeyProperty(kind='ArtPiece')
     masterArtFlag = ndb.BooleanProperty(default=False)
+    slaveArtFlag = ndb.BooleanProperty(default=False)
     mediums = ndb.StringProperty(indexed=True)
     name = ndb.StringProperty(indexed=True)
     picture = ndb.KeyProperty(kind=File)

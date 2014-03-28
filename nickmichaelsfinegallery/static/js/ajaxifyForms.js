@@ -54,6 +54,19 @@
         });
 
 
+        // photo forms
+
+        $('#editPhotoForm').ajaxForm({
+            target: '#editPhotoFormMessage',
+            success: showResponse
+        });
+
+        $('#deletePhotoForm').ajaxForm({
+            target: '#deletePhotoFormMessage',
+            success: showResponse
+        });
+
+
     //manage button clicks for modals
 
         //Art button clicks
@@ -155,24 +168,60 @@
 		};
 
 
+		// Photo button clicks
+
+        function editPhotoSaveClicked () {
+			$('#editPhotoForm').submit();
+		};
+
+		function editPhotoCancelClicked () {
+			$('#editPhotoModal').modal('hide');
+			$('#editPhotoFormMessage').hide();
+			clearForm($('#editPhotoForm'));
+		};
+
+		function deletePhotoCancelClicked () {
+			$('#deletePhotoModal').modal('hide');
+			$('#deletePhotoFormMessage').hide();
+			clearForm($('#deletePhotoForm'));
+		};
+
+		function deletePhotoDeleteClicked () {
+			$('#deletePhotoForm').submit();
+		};
+
+
         //generic showResponse and clearForm functions
 
         function showResponse(responseText, statusText, xhr, $form)  {
-            $form.find('.successMessage').show();
-            setTimeout(function(){
-									$form.closest('.modal').modal('hide');
-									$form.find('.successMessage').hide();
-                                    clearForm($form);
+            if (responseText.substring(0, 6) == "ERROR:") {
+                $form.find('.serverFeedback').removeClass('alert-success');
+                $form.find('.serverFeedback').addClass('alert-error');
+            }else{
+                $form.find('.serverFeedback').removeClass('alert-error');
+                $form.find('.serverFeedback').addClass('alert-success');
+            }
 
-                                    //update the appropriate form
-                                    formID = $form.attr('id');
-                                    if (formID=="createArtistForm" || formID=="editArtistForm" || formID=="deleteArtistForm"){
-                                        $('#artistTableBody').load('/admin/artists/refresh');
-                                    }else if (formID=="createCategoryForm" || formID=="editCategoryForm" || formID=="deleteCategoryForm"){
-                                        $('#categoryTableBody').load('/admin/categories/refresh');
-                                    }else if (formID=="uploadArtForm" || formID=="editArtForm" || formID=="deleteArtForm") {
-                                        $('#artTableBody').load('/admin/art/refresh');
-                                    }
+            $form.find('.serverFeedback').show();
+            setTimeout(function(){
+                                    //only hide the modal and refresh the table/data if it's not an error message
+                                    if (responseText.substring(0, 6) != "ERROR:") {
+                                        $form.closest('.modal').modal('hide');
+                                        $form.find('.serverFeedback').hide();
+                                        clearForm($form);
+
+                                        //update the appropriate form
+                                        formID = $form.attr('id');
+                                        if (formID=="createArtistForm" || formID=="editArtistForm" || formID=="deleteArtistForm"){
+                                            $('#artistTableBody').load('/admin/artists/refresh');
+                                        }else if (formID=="createCategoryForm" || formID=="editCategoryForm" || formID=="deleteCategoryForm"){
+                                            $('#categoryTableBody').load('/admin/categories/refresh');
+                                        }else if (formID=="uploadArtForm" || formID=="editArtForm" || formID=="deleteArtForm") {
+                                            $('#artTableBody').load('/admin/art/refresh');
+                                        }else if (formID=="editPhotoForm" || formID=="deletePhotoForm") {
+                                            $('#managePhotosThumbnails').load('/admin/photos/refresh');
+                                        }
+                                    }//end if
 
                                  }, 3000);
         }
@@ -242,4 +291,17 @@
             $("#editCategoryKey").val(key)
             $("#editCategoryName").val(categoryName)
             $("#editCategoryPhotoName").val(photoName)
+        }
+
+
+        //Photo modals
+
+		$(document).on("click", ".open-deletePhotoModal", function () {
+             var myDeletePhotoID = $(this).data('id');
+             $("#deletePhotoKey").val(myDeletePhotoID);
+        });
+
+        function fillEditPhotoModalDefaults(key, photoName){
+            $("#editPhotoKey").val(key)
+            $("#editPhotoName").val(photoName)
         }
