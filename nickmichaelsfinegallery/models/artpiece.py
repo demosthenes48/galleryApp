@@ -1,4 +1,6 @@
 from google.appengine.ext import ndb
+from google.appengine.api import search
+
 from artist import Artist
 from category import Category
 from file import File
@@ -25,3 +27,35 @@ class ArtPiece (ndb.Model):
     uploaded_by = ndb.UserProperty(required=True)
     weight = ndb.StringProperty(indexed=True)
     width = ndb.StringProperty(indexed=True)
+
+    def add_to_search_index(self):
+        fields = [
+            search.TextField(name="itemNumber", value=self.itemNumber),
+            search.TextField(name="name", value=self.name),
+            search.TextField(name='suggest', value=self.build_suggestions())
+        ]
+        document = search.Document(doc_id=str(self.key.id()), fields=fields)
+        index = search.Index(name='ArtPiece_index')
+        index.put(document)
+
+    def remove_from_search_index(self):
+        index = search.Index(name='ArtPiece_index')
+        index.delete(str(self.key.id()))
+
+    def build_suggestions(self):
+        suggestions = []
+        string = self.itemNumber + " " + self.name
+
+        #add categories and artist to string
+        categories = ndb.get_multi(self.categories)
+        for category in categories:
+            string += " " + category.categoryName
+        artist = self.artist.get()
+        string += " " + artist.firstName + " " + artist.lastName
+
+        for word in string.split():
+            prefix = ""
+            for letter in word:
+                prefix += letter
+                suggestions.append(prefix)
+        return ' '.join(suggestions)

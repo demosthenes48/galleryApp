@@ -189,6 +189,7 @@ class UploadArt(blobstore_handlers.BlobstoreUploadHandler):
                     existingArtPiece.width = width
 
                     existingArtPiece.put()
+                    existingArtPiece.add_to_search_index()
 
                     editedMessage += "<br>" + existingArtPiece.name
 
@@ -204,8 +205,11 @@ class UploadArt(blobstore_handlers.BlobstoreUploadHandler):
                         masterArtPiece.put()
 
                     artPiece.put()
+                    artPiece.add_to_search_index()
 
                     createdMessage += "<br>" + artPiece.name
+
+
 
             #no need to save the file in the blobstore
             blob_info.delete()
@@ -278,6 +282,7 @@ class EditArt(BaseHandler):
         artpiece.width = width
 
         artpiece.put()
+        artpiece.add_to_search_index()
 
         message = "Successfully updated artpiece record: " + artpiece.name
         self.response.write(message)
@@ -289,6 +294,7 @@ class DeleteArt(BaseHandler):
 
         #generate message
         artpiece = ArtPiece.get_by_id(int(artKeyString))
+        artpiece.remove_from_search_index()
         message = "Successfully deleted artpiece: " + artpiece.name
 
         #delete category
@@ -302,4 +308,6 @@ class DeleteAllArt(BaseHandler):
         allArt = ArtPiece.query()
         for art in allArt:
             artKey = art.key
+            artpiece = ndb.get(artKey)
+            artpiece.remove_from_search_index()
             artKey.delete()

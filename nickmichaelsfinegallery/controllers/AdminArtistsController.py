@@ -95,12 +95,14 @@ class CreateArtist(BaseHandler):
             existingArtist.uploaded_by=users.get_current_user()
 
             existingArtist.put()
+            existingArtist.add_to_search_index()
             message = "Successfully updated artist record: " + existingArtist.firstName + " " + existingArtist.lastName
 
         else:
             #add a new artist entry if no artist with that name already exists
             artist = Artist(biography=biography, firstName=firstName, lastName=lastName, picture=photo.key, uploaded_by=users.get_current_user())
             artist.put()
+            artist.add_to_search_index()
             message = "Successfully created artist record: " + artist.firstName + " " + artist.lastName
 
         self.response.write(message)
@@ -128,6 +130,7 @@ class EditArtist(BaseHandler):
         artist.uploaded_by=users.get_current_user()
 
         artist.put()
+        artist.add_to_search_index()
 
         message = "Successfully updated artist record: " + artist.firstName + " " + artist.lastName
         self.response.write(message)
@@ -139,6 +142,7 @@ class DeleteArtist(BaseHandler):
 
         #generate message
         artist = Artist.get_by_id(int(artistKeyString))
+        artist.remove_from_search_index()
         message = "Successfully deleted artist: " + artist.firstName + " " + artist.lastName
 
         #delete artist
@@ -146,3 +150,11 @@ class DeleteArtist(BaseHandler):
         artistKey.delete()
 
         self.response.write(message)
+
+
+class DeleteAllArtistIndexes(BaseHandler):
+    def get(self):
+        artists=Artist.query()
+        for artist in artists:
+            artist.remove_from_search_index()
+            logging.error("removed index for: %s" % artist.firstName)

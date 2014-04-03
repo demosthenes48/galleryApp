@@ -23,10 +23,50 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="PublicHomeController.py" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="PublicHomeController.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/controllers/PublicHomeController.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="136" column="67" selection-start="4932" selection-end="4932" vertical-scroll-proportion="0.60146254" vertical-offset="1813" max-vertical-offset="2805">
+            <state line="150" column="0" selection-start="5768" selection-end="5768" vertical-scroll-proportion="0.0" vertical-offset="2209" max-vertical-offset="3825">
+              <folding>
+                <element signature="e#0#14#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AdminCategoriesController.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/controllers/AdminCategoriesController.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="141" column="36" selection-start="5280" selection-end="5280" vertical-scroll-proportion="0.0" vertical-offset="1773" max-vertical-offset="2346">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="admin.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/routes/admin.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="31" column="0" selection-start="1041" selection-end="1041" vertical-scroll-proportion="0.0" vertical-offset="264" max-vertical-offset="884">
+              <folding>
+                <element signature="e#0#14#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="adminArt.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/adminArt.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="114" column="35" selection-start="5680" selection-end="5680" vertical-scroll-proportion="-18.884615" vertical-offset="1447" max-vertical-offset="4318">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="publicSearchResults.html" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/templates/publicSearchResults.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="14" column="47" selection-start="370" selection-end="370" vertical-scroll-proportion="0.425" vertical-offset="0" max-vertical-offset="560">
               <folding />
             </state>
           </provider>
@@ -35,18 +75,7 @@
       <file leaf-file-name="AdminArtController.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/controllers/AdminArtController.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="250" column="8" selection-start="11850" selection-end="11923" vertical-scroll-proportion="0.0" vertical-offset="3860" max-vertical-offset="5287">
-              <folding>
-                <element signature="e#0#14#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="publicArtPiece.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/publicArtPiece.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="34" column="13" selection-start="1142" selection-end="1142" vertical-scroll-proportion="-12.846154" vertical-offset="244" max-vertical-offset="1088">
+            <state line="56" column="12" selection-start="1782" selection-end="1829" vertical-scroll-proportion="-8.923077" vertical-offset="414" max-vertical-offset="5117">
               <folding />
             </state>
           </provider>
@@ -55,8 +84,10 @@
       <file leaf-file-name="artpiece.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/models/artpiece.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="16" column="54" selection-start="693" selection-end="693" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="493">
-              <folding />
+            <state line="53" column="64" selection-start="2187" selection-end="2187" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1122">
+              <folding>
+                <element signature="e#0#36#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -71,22 +102,22 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/templates/publicAboutUs.html" />
-        <option value="$PROJECT_DIR$/templates/publicBase.html" />
-        <option value="$PROJECT_DIR$/templates/publicArtistArt.html" />
-        <option value="$PROJECT_DIR$/static/bootstrap/css/app.css" />
-        <option value="$PROJECT_DIR$/templates/publicCategoryArt.html" />
-        <option value="$PROJECT_DIR$/routes/admin.py" />
-        <option value="$PROJECT_DIR$/controllers/FileUploadsController.py" />
-        <option value="$PROJECT_DIR$/static/js/ajaxifyForms.js" />
         <option value="$PROJECT_DIR$/templates/adminArt.html" />
         <option value="$PROJECT_DIR$/templates/adminArtists.html" />
         <option value="$PROJECT_DIR$/templates/adminCategories.html" />
         <option value="$PROJECT_DIR$/templates/fileUpload.html" />
-        <option value="$PROJECT_DIR$/models/artpiece.py" />
-        <option value="$PROJECT_DIR$/controllers/AdminArtController.py" />
         <option value="$PROJECT_DIR$/templates/publicArtPiece.html" />
+        <option value="$PROJECT_DIR$/routes/public.py" />
+        <option value="$PROJECT_DIR$/controllers/AdminArtController.py" />
+        <option value="$PROJECT_DIR$/models/artpiece.py" />
+        <option value="$PROJECT_DIR$/models/category.py" />
+        <option value="$PROJECT_DIR$/templates/publicBase.html" />
+        <option value="$PROJECT_DIR$/controllers/AdminCategoriesController.py" />
+        <option value="$PROJECT_DIR$/controllers/AdminArtistsController.py" />
+        <option value="$PROJECT_DIR$/routes/admin.py" />
+        <option value="$PROJECT_DIR$/models/artist.py" />
         <option value="$PROJECT_DIR$/controllers/PublicHomeController.py" />
+        <option value="$PROJECT_DIR$/templates/publicSearchResults.html" />
       </list>
     </option>
   </component>
@@ -221,26 +252,8 @@
               <option name="myItemId" value="bootstrap" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
-          </PATH>
-          <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="nickmichaelsfinegallery" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="nickmichaelsfinegallery" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="static" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="bootstrap" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="fonts" />
+              <option name="myItemId" value="js" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -259,10 +272,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="bootstrap" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="css" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -556,108 +565,104 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/static/bootstrap/css/app.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="46" column="1" selection-start="1038" selection-end="1038" vertical-scroll-proportion="-7.0384617" vertical-offset="599" max-vertical-offset="11441">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/routes/public.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="29" selection-start="304" selection-end="304" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="323">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/publicArtistArt.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="28" column="0" selection-start="808" selection-end="1386" vertical-scroll-proportion="0.33214286" vertical-offset="290" max-vertical-offset="850">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/adminArt.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="73" column="88" selection-start="3922" selection-end="3922" vertical-scroll-proportion="0.33199194" vertical-offset="1076" max-vertical-offset="4318">
-          <folding>
-            <element signature="n#style#0;n#div#14;n#form#0;n#div#0;n#div#1;n#div#3;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/adminArtists.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="172" column="85" selection-start="7318" selection-end="7318" vertical-scroll-proportion="0.41266796" vertical-offset="2709" max-vertical-offset="3230">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/adminBase.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="17" selection-start="565" selection-end="566" vertical-scroll-proportion="0.33333334" vertical-offset="43" max-vertical-offset="1088">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/adminCategories.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="141" column="93" selection-start="6101" selection-end="6101" vertical-scroll-proportion="0.41266796" vertical-offset="2182" max-vertical-offset="2703">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/controllers/FileUploadsController.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="220" column="0" selection-start="8694" selection-end="8694" vertical-scroll-proportion="5.963351" vertical-offset="0" max-vertical-offset="3876">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/fileUpload.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="36" column="30" selection-start="1565" selection-end="1565" vertical-scroll-proportion="1.11883" vertical-offset="0" max-vertical-offset="3689">
-          <folding>
-            <element signature="n#style#0;n#img#0;n#div#0;n#li#0;n#ul#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#div#1;n#form#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#div#0;n#form#0;n#div#0;n#div#1;n#div#1;n#!!top" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/static/js/ajaxifyForms.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="209" column="67" selection-start="5399" selection-end="5399" vertical-scroll-proportion="0.73491776" vertical-offset="3151" max-vertical-offset="5304">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/routes/admin.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="38" column="38" selection-start="1365" selection-end="1365" vertical-scroll-proportion="1.1023891" vertical-offset="0" max-vertical-offset="850">
-          <folding>
-            <element signature="e#0#14#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/publicCategoryArt.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="60" selection-start="516" selection-end="572" vertical-scroll-proportion="-11.076923" vertical-offset="18" max-vertical-offset="663">
+        <state line="11" column="33" selection-start="274" selection-end="274" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="340">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/publicArtPiece.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="34" column="13" selection-start="1142" selection-end="1142" vertical-scroll-proportion="-12.846154" vertical-offset="244" max-vertical-offset="1088">
+        <state line="22" column="39" selection-start="739" selection-end="739" vertical-scroll-proportion="0.66785717" vertical-offset="0" max-vertical-offset="1088">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/publicArtists.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="13" column="0" selection-start="321" selection-end="735" vertical-scroll-proportion="0.40402195" vertical-offset="0" max-vertical-offset="547">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/publicHome.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="9" column="200" selection-start="304" selection-end="492" vertical-scroll-proportion="0.2908745" vertical-offset="0" max-vertical-offset="526">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/publicArtistArt.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="30" column="45" selection-start="899" selection-end="907" vertical-scroll-proportion="0.91071427" vertical-offset="0" max-vertical-offset="850">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/controllers/AdminArtController.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="250" column="8" selection-start="11850" selection-end="11923" vertical-scroll-proportion="0.0" vertical-offset="3860" max-vertical-offset="5287">
+        <state line="56" column="12" selection-start="1782" selection-end="1829" vertical-scroll-proportion="-8.923077" vertical-offset="414" max-vertical-offset="5117">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/category.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="13" column="34" selection-start="544" selection-end="544" vertical-scroll-proportion="0.39115044" vertical-offset="0" max-vertical-offset="697">
+          <folding>
+            <element signature="e#0#36#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/publicBase.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="65" column="212" selection-start="3302" selection-end="3302" vertical-scroll-proportion="0.6825095" vertical-offset="746" max-vertical-offset="2227">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controllers/AdminCategoriesController.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="141" column="36" selection-start="5280" selection-end="5280" vertical-scroll-proportion="0.0" vertical-offset="1773" max-vertical-offset="2346">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controllers/AdminArtistsController.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="157" column="30" selection-start="5898" selection-end="5898" vertical-scroll-proportion="0.8768116" vertical-offset="2015" max-vertical-offset="2652">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/admin.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="31" column="0" selection-start="1041" selection-end="1041" vertical-scroll-proportion="0.0" vertical-offset="264" max-vertical-offset="884">
+          <folding>
+            <element signature="e#0#14#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/adminArt.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="114" column="35" selection-start="5680" selection-end="5680" vertical-scroll-proportion="-18.884615" vertical-offset="1447" max-vertical-offset="4318">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/artist.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="14" column="99" selection-start="656" selection-end="656" vertical-scroll-proportion="0.12743363" vertical-offset="132" max-vertical-offset="731">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controllers/PublicHomeController.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="150" column="0" selection-start="5768" selection-end="5768" vertical-scroll-proportion="0.0" vertical-offset="2209" max-vertical-offset="3825">
           <folding>
             <element signature="e#0#14#0" expanded="true" />
           </folding>
@@ -666,14 +671,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/models/artpiece.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="54" selection-start="693" selection-end="693" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="493">
-          <folding />
+        <state line="53" column="64" selection-start="2187" selection-end="2187" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1122">
+          <folding>
+            <element signature="e#0#36#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/controllers/PublicHomeController.py">
+    <entry file="file://$PROJECT_DIR$/templates/publicSearchResults.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="136" column="67" selection-start="4932" selection-end="4932" vertical-scroll-proportion="0.60146254" vertical-offset="1813" max-vertical-offset="2805">
+        <state line="14" column="47" selection-start="370" selection-end="370" vertical-scroll-proportion="0.425" vertical-offset="0" max-vertical-offset="560">
           <folding />
         </state>
       </provider>

@@ -9,6 +9,7 @@ from models.category import Category
 from models.file import File
 
 from google.appengine.ext import ndb
+from google.appengine.api import search
 
 JINJA_ENVIRONMENT = jinja2.Environment(
     loader=jinja2.FileSystemLoader(os.path.dirname(os.path.dirname(__file__))))
@@ -165,6 +166,55 @@ class AboutUsPage(webapp2.RequestHandler):
 
         templateVars = {
                         "title" : "About Us"
+                       }
+
+        self.response.write(template.render(templateVars))
+
+
+class SearchResults(webapp2.RequestHandler):
+    def get(self):
+        template = JINJA_ENVIRONMENT.get_template('/templates/publicSearchResults.html')
+        searchString =  self.request.get('searchString')
+
+        matchingArt = []
+
+        #search for Art that matches
+        index = search.Index(name="ArtPiece_index")
+        try:
+            results = index.search(searchString)
+            # Iterate over the documents in the results
+            for artpieceDocument in results:
+                artpiece = ArtPiece.get_by_id(int(artpieceDocument.doc_id))
+                matchingArt.append(artpiece)
+        except search.Error:
+            logging.exception('Search failed')
+
+
+        #now generate the appropriate HTML for each result
+        if len(matchingArt) > 0:
+            matchingArtHTML = """<ul class="thumbnails">"""
+            for artpiece in matchingArt:
+                matchingArtHTML += "<a href=\"/artpiece?itemNumber=" + artpiece.itemNumber + """\">
+                                        <li class="span3">
+                                            <div class="thumbnail">
+                                                <img data-src="holder.js/300x200" alt="300x200" style="width: 300px; height: 200px;" src=\"""" +  artpiece.picture.get().url + """\">
+                                                <div class="caption">
+                                                    <div class="artpieceName"><h5>""" + artpiece.name + """</h5></div>
+                                                    <p>""" + artpiece.priceDisplay + """</p>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </a>"""
+            matchingArtHTML += "</ul>"
+
+        else:
+            matchingArtHTML="No matches found"
+
+
+        templateVars = {
+                        "title" : 'Search Results',
+                        "matchingArt": matchingArtHTML,
+                        "searchString": searchString
                        }
 
         self.response.write(template.render(templateVars))

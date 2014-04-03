@@ -89,12 +89,14 @@ class CreateCategory(BaseHandler):
             existingCategory.uploaded_by=users.get_current_user()
 
             existingCategory.put()
+            existingCategory.add_to_search_index()
             message = "Successfully updated category record: " + existingCategory.categoryName
 
         else:
             #add a new category entry if no category with that name already exists
             category = Category(categoryName=categoryName, picture=photo.key, uploaded_by=users.get_current_user())
             category.put()
+            category.add_to_search_index()
             message = "Successfully created category record: " + category.categoryName
 
         self.response.write(message)
@@ -118,6 +120,7 @@ class EditCategory(BaseHandler):
         category.uploaded_by=users.get_current_user()
 
         category.put()
+        category.add_to_search_index()
 
         message = "Successfully updated category record: " + category.categoryName
         self.response.write(message)
@@ -129,6 +132,7 @@ class DeleteCategory(BaseHandler):
 
         #generate message
         category = Category.get_by_id(int(categoryKeyString))
+        category.remove_from_search_index()
         message = "Successfully deleted category: " + category.categoryName
 
         #delete category

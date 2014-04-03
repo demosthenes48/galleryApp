@@ -1,0 +1,18 @@
+{% extends "/templates/publicBase.html" %}
+{% block title %}{{ title }}{% endblock %}
+
+{% block javascript %}
+    <script>
+        $( document ).ready(function() {
+            $("ul.nav li").removeClass("active");
+            $("#homeTab").addClass("active");
+        });
+    </script>
+{% endblock %}
+
+{% block content %}
+
+<H4>Search results for "{{ searchString }}"</H4>
+{{ matchingArt }}
+
+{% endblock %}
