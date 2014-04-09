@@ -201,7 +201,7 @@ class SearchResults(webapp2.RequestHandler):
                 matchingArtHTML += "<a href=\"/artpiece?itemNumber=" + artpiece.itemNumber + """\">
                                         <li class="span3">
                                             <div class="thumbnail">
-                                                <img data-src="holder.js/300x200" alt="300x200" style="width: 300px; height: 200px;" src=\"""" +  artpiece.picture.get().url + """\">
+                                                <div class="thumbnailHolder"><img src=\"""" +  artpiece.picture.get().thumbnail + """\""></div>
                                                 <div class="caption">
                                                     <div class="artpieceName"><h5>""" + artpiece.name + """</h5></div>
                                                     <p>""" + artpiece.priceDisplay + """</p>
