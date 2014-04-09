@@ -30,8 +30,6 @@ app = webapp2.WSGIApplication([
     (r'/admin/categories/delete', DeleteCategory),
     (r'/admin/categories/refresh', RefreshCategoriesTable),
 
-    (r'/admin/artists/removeIndexes', DeleteAllArtistIndexes),
-
     #Admin Photo Uploads
     (r'/admin/photos', FileUploadFormHandler),
     (r'/admin/photos/generate_upload_url', GenerateUploadUrlHandler),

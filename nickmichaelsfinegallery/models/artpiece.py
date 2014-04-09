@@ -29,10 +29,12 @@ class ArtPiece (ndb.Model):
     width = ndb.StringProperty(indexed=True)
 
     def add_to_search_index(self):
+        categoriesString = self.categoryNames().replace(',', '')
         fields = [
             search.TextField(name="itemNumber", value=self.itemNumber),
             search.TextField(name="name", value=self.name),
-            search.TextField(name='suggest', value=self.build_suggestions())
+            search.TextField(name='suggest', value=self.build_suggestions()),
+            search.TextField(name='categories', value=categoriesString)
         ]
         document = search.Document(doc_id=str(self.key.id()), fields=fields)
         index = search.Index(name='ArtPiece_index')
@@ -46,10 +48,6 @@ class ArtPiece (ndb.Model):
         suggestions = []
         string = self.itemNumber + " " + self.name
 
-        #add categories and artist to string
-        categories = ndb.get_multi(self.categories)
-        for category in categories:
-            string += " " + category.categoryName
         artist = self.artist.get()
         string += " " + artist.firstName + " " + artist.lastName
 
@@ -59,3 +57,14 @@ class ArtPiece (ndb.Model):
                 prefix += letter
                 suggestions.append(prefix)
         return ' '.join(suggestions)
+
+    def categoryNames(self):
+        #return a comma separated list of categories
+        categories = ndb.get_multi(self.categories)
+
+        categoryNamesList = []
+        for category in categories:
+            categoryNamesList.append(str(category.categoryName))
+        categoryNamesString = ", ".join(categoryNamesList)
+
+        return categoryNamesString

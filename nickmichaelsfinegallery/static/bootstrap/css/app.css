@@ -257,6 +257,12 @@ display:block;
 height:45px;
 }
 
+.thumbnailHolder {
+text-align:center;
+height:200px;
+line-height:200px;
+}
+
 
 .base {
   min-height: 20px;

@@ -440,6 +440,7 @@
   .thumbnails > li {
     margin-left: 30px;
   }
+  style="text-align:center; min-height:200px;"
   .row-fluid .thumbnails {
     margin-left: 0;
   }

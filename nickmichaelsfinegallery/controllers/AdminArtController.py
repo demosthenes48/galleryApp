@@ -54,11 +54,7 @@ class ArtPage(BaseHandler):
 
         for artpiece in art:
             #create a comma separated string of categories
-            categories = ndb.get_multi(artpiece.categories)
-            categoryNamesList = []
-            for category in categories:
-                categoryNamesList.append(str(category.categoryName))
-            categoryNamesString = ",".join(categoryNamesList)
+            categoryNamesString = artpiece.categoryNames()
             categoriesList[artpiece.key] = categoryNamesString
 
             #check for null master art piece

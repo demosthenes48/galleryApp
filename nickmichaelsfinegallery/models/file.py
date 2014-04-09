@@ -8,3 +8,4 @@ class File (ndb.Model):
     uploaded_at = ndb.DateTimeProperty(required=True, auto_now=True)
     uploaded_by = ndb.UserProperty(required=True)
     url = ndb.StringProperty(required=False)
+    thumbnail = ndb.StringProperty(required=False)

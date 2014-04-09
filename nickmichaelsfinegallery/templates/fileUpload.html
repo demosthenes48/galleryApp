@@ -36,7 +36,7 @@
         {% for photo in photos %}
             <li class="span3">
                 <div class="thumbnail">
-                    <img data-src="holder.js/300x200" alt="300x200" style="width: 300px; height: 200px;" src="{{ photo.url }}">
+                    <div style="text-align:center; height:200px; line-height:200px;"><img src="{{ photo.thumbnail }}"></div>
                     <div class="caption">
                         <div class="artpieceName">
                             <h5>{{ photo.file_name }}</h5>
@@ -124,16 +124,6 @@
             // User can upload no more then 20 files in one go (sets multiple_queues to false)
             max_file_count: 20,
 
-            chunk_size: '1mb',
-
-            // Resize images on clientside if we can
-            resize : {
-                width : 200,
-                height : 200,
-                quality : 90,
-                crop: true // crop to exact dimensions
-            },
-
             filters : {
                 // Maximum file size
                 max_file_size : '1000mb',
@@ -176,15 +166,18 @@
                           up.settings.url = data;
                         },
                     });
-                }
+                },
             },
 
             // Post init events, bound after the internal events
             init : {
 
                 FileUploaded: function(up, file, info) {
-                    // Called when a file has finished uploading
-                    log('[FileUploaded] File:', file, "Info:", info);
+                    //refresh the page if everything is updated
+                    if(up.total.queued == 0) {
+                        location.reload();
+
+                    }
                 }
             }
         });

@@ -118,12 +118,13 @@ class FileUploadHandler(blobstore_handlers.BlobstoreUploadHandler):
                     blobstore.delete(existingPhoto.blob)
                     existingPhoto.blob = blob_info.key()
                     existingPhoto.uploaded_by=users.get_current_user()
+                    existingPhoto.thumbnail=images.get_serving_url(blob_info.key(), size=200)
                     existingPhoto.url=images.get_serving_url(blob_info.key())
 
                     existingPhoto.put()
                 else:
                     #add a new file entry if no file with that name already exists
-                    file = File(blob=blob_info.key(), file_name=blob_info.filename.upper(), uploaded_by=users.get_current_user(), url=images.get_serving_url(blob_info.key()))
+                    file = File(blob=blob_info.key(), file_name=blob_info.filename.upper(), uploaded_by=users.get_current_user(), url=images.get_serving_url(blob_info.key()), thumbnail=images.get_serving_url(blob_info.key(), size=200))
                     file.put()
 
                 self.redirect("/admin/photos/%s/success" % blob_info.key())
@@ -135,17 +136,17 @@ class AjaxSuccessHandler(BaseHandler):
         self.response.out.write('%s/file/%s' % (self.request.host_url, file_id))
 
 
-class FileInfoHandler(BaseHandler):
+class FileInfoHandler(blobstore_handlers.BlobstoreDownloadHandler):
   def get(self, file_id):
-    file_info = blobstore.BlobInfo.get(file_id)
-    if not file_info:
+    file_id = self.request.get('photoID')
+    file = File.get_by_id(long(file_id))
+
+    if not blobstore.get(file.blob):
         self.error(404)
-        return
+    else:
+        self.send_blob(file.blob)
+        #self.send_blob(file.blob, save_as=True)
 
-    img = images.Image(blob_key=file_id)
-
-    self.response.headers['Content-Type'] = 'image/jpeg'
-    self.response.out.write(img)
 
     #logging.error("%s" % images.get_serving_url(file_id, size=None, crop=False, secure_url=None))
     #self.redirect(images.get_serving_url(file_id, size=None, crop=False, secure_url=None))

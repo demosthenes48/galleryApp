@@ -181,7 +181,11 @@ class SearchResults(webapp2.RequestHandler):
         #search for Art that matches
         index = search.Index(name="ArtPiece_index")
         try:
-            results = index.search(searchString)
+            search_query = search.Query(
+                query_string=searchString,
+                options=search.QueryOptions(
+                limit=100))
+            results = index.search(search_query)
             # Iterate over the documents in the results
             for artpieceDocument in results:
                 artpiece = ArtPiece.get_by_id(int(artpieceDocument.doc_id))

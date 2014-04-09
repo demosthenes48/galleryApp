@@ -16,7 +16,7 @@
     <li class="span3">
         <div class="thumbnail">
             <span>{{ artist.firstName }} {{ artist.lastName }}</span>
-            <a href="/artist?artistID={{ artist.key.id()}}"><img data-src="holder.js/300x200" alt="300x200" style="width: 300px; height: 200px;" src="{{ photos[artist.key].url }}"></a>
+            <a href="/artist?artistID={{ artist.key.id()}}"><div class="thumbnailHolder"><img src="{{ photos[artist.key].thumbnail }}"></div></a>
         </div>
     </li>
     {% endfor %}
